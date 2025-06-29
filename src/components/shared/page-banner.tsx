@@ -1,14 +1,16 @@
+import { cn } from '@/lib/utils';
 import React from 'react'
 
 type PageBannerProp = {
     bannerText: string;
     bannerColor?: string;
+    textColor?: string
 }
 
-function PageBanner({bannerText, bannerColor = 'bg-black'}: PageBannerProp) {
+function PageBanner({bannerText, bannerColor = 'bg-black', textColor = 'text-white'}: PageBannerProp) {
   return (
     <div className={`${bannerColor} py-4 w-full`}>
-        <h1 className='text-center'>{bannerText}</h1>
+        <p className={cn('text-center lg:text-[22px] currentColor', textColor)}>{bannerText}</p>
     </div>
   )
 }

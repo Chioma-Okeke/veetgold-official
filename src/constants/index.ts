@@ -34,8 +34,13 @@ export const QUICK_LINKS = [
 
 export const CONTACT_DATA = {
     EMAIL: "veetgold@example.com",
-    PHONE_NUMBER: "+234808773799",
+    PHONE_NUMBER: "+2348087737997",
     ADDRESS: "123 Veetgold Street, Lagos, Nigeria",
     INSTAGRAM: "https://instagram.com/veetgold",
     FACEBOOK: "https://facebook.com/veetgold",
+}
+
+export const FOOTER_LINKS = {
+    "QUICK lINK": QUICK_LINKS,
+    "CONTACT": CONTACT_DATA,
 }

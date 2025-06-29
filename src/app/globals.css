@@ -44,6 +44,10 @@
 }
 
 :root {
+  --neutral-50: 0 0% 7%;
+
+  --greyscale-text-title: var(--neutral-50)
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -119,4 +123,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.swiper-class {
+  position: absolute !important
 }

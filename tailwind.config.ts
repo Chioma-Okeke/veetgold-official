@@ -8,7 +8,19 @@ const config: Config = {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        orbitron: ['var(--font-orbitron)'],
+        sans: ['var(--font-open-sans)']
+      },
+      colors: {
+        greyscale: {
+          text: {
+            title: 'hsl(var(--greyscale-text-title) / <alpha-value>)'
+          }
+        }
+      }
+    },
   },
   plugins: [],
 }
