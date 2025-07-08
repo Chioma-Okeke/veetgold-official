@@ -128,3 +128,52 @@
 .swiper-class {
   position: absolute !important
 }
+
+.banner-wrapper {
+    cursor: pointer;
+    width: 100%;
+}
+
+.banner-wrapper .wrapper {
+    display: flex;
+    overflow: hidden;
+}
+
+.banner-wrapper .wrapper .cards {
+    display: flex;
+    flex-shrink: 0;
+    gap: 32px;
+    animation: swipe-horizontally 50000ms linear infinite;
+}
+
+.banner-wrapper:hover .wrapper .cards {
+    animation-play-state: paused;
+}
+
+.watermark-animate {
+    animation: swipe-vertically 50000ms linear infinite;
+}
+
+@keyframes swipe-horizontally {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes swipe-vertically {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}

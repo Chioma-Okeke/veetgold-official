@@ -1,8 +1,9 @@
+import { cn } from '@/lib/utils'
 import React from 'react'
 
-function MaxContainer({children}: {children: React.ReactNode}) {
+function MaxContainer({children, className}: {children: React.ReactNode, className?: string}) {
   return (
-    <div className='w-full max-w-[1240px] mx-auto'>
+    <div className={cn('w-full max-w-[1240px] mx-auto', className)}>
         {children}
     </div>
   )

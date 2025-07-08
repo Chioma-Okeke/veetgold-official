@@ -3,7 +3,7 @@ import React from 'react'
 
 function PaddingContainer({ children, className }: { children: React.ReactNode, className?: string }) {
     return (
-        <div className={cn('px-5 md:px-10 lg:px-[100px]', className)}>
+        <div className={cn('px-5 md:px-10 xl:px-[100px]', className)}>
             {children}
         </div>
     )
