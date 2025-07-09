@@ -18,13 +18,13 @@ export const FaqItems = ({
         <Accordion
             type="single"
             collapsible
-            className={cn("border-b border-gray-200 py-4 pb-3 w-full h-fit", containerClass)}
+            className={cn("py-4 pb-3 w-full h-fit", containerClass)}
         >
             {faqs.map((faq, index) => (
                 <AccordionItem
                     key={index}
                     value={`faq-${index}`}
-                    className="border-b border-transparent p-2 transition-colors duration-300 ease-in-out [&[data-state=open]]:border-greyscale-border-default"
+                    className="border-b border-gray-200 p-2"
                 >
                     <AccordionTrigger
                         showDropdownIcon={false}

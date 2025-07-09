@@ -25,9 +25,9 @@ export const contactPageDetails = [
 
 function ContactPageHero() {
     return (
-        <section className='min-h-screen w-full relative py-24 md:py-28 lg:py-[200px]'>
+        <section className='w-full relative pt-24 md:pt-28 lg:pt-[200px] pb-10 lg:pb-20'>
             <div
-                className="w-full min-h-screen overflow-hidden absolute inset-0 -z-10 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/40 after:to-transparent"
+                className="w-full overflow-hidden absolute inset-0 -z-10 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/40 after:to-transparent"
             >
                 <Image
                     src="https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp"

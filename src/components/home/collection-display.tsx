@@ -45,7 +45,7 @@ function CollectionDisplay() {
                         See all {activeTab} products
                     </Link>
                 </div>
-                <div className='relative size-[250px] sm:size-[394px] md:size-[450px] xl:size-[630px] mx-auto'>
+                <div className='relative aspect-[630/630] max-w-[630px] w-full mx-auto'>
                     <Swiper
                         spaceBetween={0}
                         speed={1000}
@@ -56,13 +56,13 @@ function CollectionDisplay() {
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
                         }}
-                        className='relative w-full size-[250px] sm:size-[394px] md:size-[450px] xl:size-[630px]'
+                        className='relative w-full aspect-[630/630] max-w-[630px]'
                     >
                         {
                             focusedContent.imgSrc.map((image, index) => {
                                 return (
                                     <SwiperSlide key={index} className="relative w-full">
-                                        <div className='w-full max-w-[630px] relative overflow-hidden h-full max-h-[630px] rounded-[12px]'>
+                                        <div className='w-full aspect-[630/630] max-w-[630px] relative overflow-hidden rounded-[12px]'>
                                             <Image src={image} alt={`image-${index}`} fill sizes='100vw' className='object-cover object-center' />
                                         </div>
                                     </SwiperSlide>

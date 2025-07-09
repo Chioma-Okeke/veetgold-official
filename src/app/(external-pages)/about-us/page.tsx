@@ -1,15 +1,17 @@
 import FaqSection from '@/components/about-us/faq-section'
 import MissionAndValues from '@/components/about-us/mission-and-values'
 import SectionUnderHero from '@/components/about-us/section-under-hero'
+import AboutHero from '@/components/about-us/hero-section'
 import React from 'react'
 
 function AboutUs() {
   return (
-    <div>
+    <>
+        <AboutHero />
         <SectionUnderHero/>
         <MissionAndValues/>
         <FaqSection/>
-    </div>
+    </>
   )
 }
 

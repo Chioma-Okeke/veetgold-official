@@ -16,7 +16,7 @@ function Header() {
         <header className='z-50 w-full absolute top-0 left-0 p-4 lg:px-[100px] lg:py-6 lg:bg-black/33 text-white'>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center lg:gap-32'>
-                    <Logo variant="default" />
+                    <Logo variant={pathname === "/about-us" ? "colored" : "default"} />
                     <nav className='hidden lg:block'>
                         <ul className='flex items-center gap-8'>
                             {HEADER_URLS.map((item) => {
