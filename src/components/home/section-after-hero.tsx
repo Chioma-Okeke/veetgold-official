@@ -22,12 +22,12 @@ function SectionAfterHero() {
                 </MaxContainer>
             </PaddingContainer>
             <div className="absolute inset-y-0 left-0 flex items-center overflow-hidden border  border-red-500 pointer-events-none">
-  <div className="watermark-animate rotate-270 origin-bottom-left w-full">
-    <p className="text-[100px] font-bold text-[#121212]/5 leading-none whitespace-nowrap">
-      VEETGOLD
-    </p>
-  </div>
-</div>
+                <div className="watermark-animate rotate-270 origin-bottom-left w-full">
+                    <p className="text-[100px] font-bold text-[#121212]/5 leading-none whitespace-nowrap">
+                        VEETGOLD
+                    </p>
+                </div>
+            </div>
 
         </section>
     )

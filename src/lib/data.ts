@@ -98,3 +98,17 @@ export const faqs = [
   },
 ];
 
+export const missionAndValues = [
+    {
+        title: "Our Mission",
+        subTitle: "The Heart Behind Every Formula",
+        description: "To craft honest, high-performing beauty products that nourish skin and confidence, using intentional ingredients, and ethical practices. We exist to redefine beauty through authenticity, transparency, and care in every jar and bottle.",
+        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/african-queen_panxkr.webp",
+    },
+    {
+        title: "Our Values",
+        subTitle: "The Beauty We’re Creating",
+        description: "To become a trusted name in self-crafted skincare, where quality isn’t compromised, beauty is personal, and every product reflects our commitment to conscious creation and radiant, healthy skin for all.",
+        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/african-queen_panxkr.webp  ",
+    },
+]

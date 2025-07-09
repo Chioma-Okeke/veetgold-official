@@ -28,12 +28,12 @@ export const FaqItems = ({
                 >
                     <AccordionTrigger
                         showDropdownIcon={false}
-                        className="cursor-pointer group flex w-full items-center hover:font-semibold transition-all ease-in-out duration-500 hover:no-underline justify-between border-none py-2 text-left lg:text-lg font-normal text-greyscale-text-title [&[data-state=open]]:font-semibold"
+                        className="cursor-pointer group flex w-full items-center transition-all ease-in-out duration-500 hover:no-underline justify-between border-none py-2 text-left lg:text-lg font-normal text-greyscale-text-title [&[data-state=open]]:font-semibold"
                     >
                         <span>{faq.question}</span>
                         <span className="flex size-8 items-center justify-center cursor-pointer">
-                            <Plus className="hover:scale-110 group-[&[data-state=open]]:hidden text-[#646464]" />
-                            <Minus className="hidden hover:scale-110 group-[&[data-state=open]]:block text-[#121212]" />
+                            <Plus className="hover:scale-110 group-[&[data-state=open]]:hidden text-[#646464] border border-[#646464] size-3" />
+                            <Minus className="hidden hover:scale-110 group-[&[data-state=open]]:block border border-[#121212] size-3 text-[#121212]" />
                         </span>
                     </AccordionTrigger>
 
