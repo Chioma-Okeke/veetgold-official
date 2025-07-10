@@ -36,7 +36,7 @@ const AccordionTrigger = React.forwardRef<
 >(({
   className,
   children,
-  showDropdownIcon,
+  showDropdownIcon = true,
   ...props
 }, ref) => {
   return (
