@@ -9,7 +9,7 @@ export const HEADER_URLS = [
     },
     {
         label: "View Catalog",
-        link: "/catalog",
+        link: "/product-catalog",
     },
     {
         label: "Contact Us",
@@ -28,7 +28,7 @@ export const QUICK_LINKS = [
     },
     {
         label: "View Catalog",
-        link: "/catalog",
+        link: "/product-catalog",
     },
 ];
 

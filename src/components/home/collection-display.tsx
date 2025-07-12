@@ -19,12 +19,12 @@ function CollectionDisplay() {
     const focusedContent = featuredCollections[activeTab];
     return (
         <Tabs defaultValue='fragrances' onValueChange={(value) => setActiveTab(value as CollectionKey)}>
-            <TabsList className='bg-white w-full max-w-[300px] sm:max-w-[334px] h-[61px] mx-auto rounded-[12px] p-2 mb-[71px]'>
+            <TabsList className='bg-white w-full gap-2 max-w-[300px] sm:max-w-[334px] h-[61px] rounded-[12px] p-2 mb-[71px]'>
                 <TabsTrigger value="fragrances" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Fragrance</TabsTrigger>
                 <TabsTrigger value="beauty" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Beauty</TabsTrigger>
                 <TabsTrigger value="cosmetics" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Cosmetics</TabsTrigger>
             </TabsList>
-            <TabsContent className='flex flex-col lg:flex-row max-xl:gap-10 lg:items-center lg:justify-between' value={activeTab}>
+            <TabsContent className='flex flex-col lg:flex-row-reverse gap-10 lg:items-center lg:justify-between' value={activeTab}>
                 <div className='space-y-8 lg:max-w-[586px] w-full'>
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -37,15 +37,15 @@ function CollectionDisplay() {
                             }} 
                             className='flex flex-col gap-5'
                         >
-                            <h3 className='font-semibold text-4xl lg:text-[42px]'>{focusedContent.title}</h3>
-                            <p className='text-[17px] lg:text-lg w-full lg:max-w-[514px] text-justify'>{focusedContent.description}</p>
+                            <h3 className='font-semibold text-4xl lg:text-2xl'>{focusedContent.title}</h3>
+                            <p className='w-full lg:max-w-[586px] text-justify'>{focusedContent.description}</p>
                         </motion.div>
                     </AnimatePresence>
                     <Link className='bg-white py-3 px-4 text-[#55795E] rounded-[12px] w-full max-w-[214px]' href={"/"}>
                         See all {activeTab} products
                     </Link>
                 </div>
-                <div className='relative aspect-[630/630] max-w-[630px] w-full mx-auto'>
+                <div className='relative aspect-[546/546] max-w-[546px] w-full mx-auto'>
                     <Swiper
                         spaceBetween={0}
                         speed={1000}
@@ -56,13 +56,13 @@ function CollectionDisplay() {
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
                         }}
-                        className='relative w-full aspect-[630/630] max-w-[630px]'
+                        className='relative w-full aspect-[546/546] max-w-[546px]'
                     >
                         {
                             focusedContent.imgSrc.map((image, index) => {
                                 return (
                                     <SwiperSlide key={index} className="relative w-full">
-                                        <div className='w-full aspect-[630/630] max-w-[630px] relative overflow-hidden rounded-[12px]'>
+                                        <div className='w-full aspect-[546/546] max-w-[546px] relative overflow-hidden rounded-[12px]'>
                                             <Image src={image} alt={`image-${index}`} fill sizes='100vw' className='object-cover object-center' />
                                         </div>
                                     </SwiperSlide>
