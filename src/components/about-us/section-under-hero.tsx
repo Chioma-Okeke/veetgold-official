@@ -9,7 +9,7 @@ function SectionUnderHero() {
         <section className='py-10 lg:pt-16 lg:pb-10'>
             <PaddingContainer>
                 <MaxContainer className='flex lg:items-center justify-between gap-10 flex-col-reverse lg:flex-row'>
-                    <div className='relative overflow-hidden w-full aspect-[541/814] max-w-[541px]'>
+                    <div className='relative overflow-hidden w-full aspect-[541/814] max-w-[541px] hidden lg:block'>
                         <Image src={"/model2.png"} alt='Model Image' fill sizes='100vw' className='object-cover object-center' />
                     </div>
                     <div className='w-full max-w-[646px] space-y-14'>

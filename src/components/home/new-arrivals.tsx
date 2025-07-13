@@ -62,7 +62,7 @@ function NewArrivals({ sectionTitle }: { sectionTitle: string }) {
                 <MaxContainer className="space-y-12">
                     <div className='flex items-center justify-between'>
                         <div>
-                            <h2 className="text-2xl lg:text-5xl"><span className='text-[#CB9E2B]'>{firstWord}</span> {rest.join(" ")}</h2>
+                            <h2 className="text-2xl lg:text-5xl font-orbitron"><span className='text-[#CB9E2B]'>{firstWord}</span> {rest.join(" ")}</h2>
                             <hr className='w-[74px] lg:w-[132px] h-1 bg-[#CB9E2B] rounded-[90px] mt-4' />
                         </div>
                         <Link href="/" className="underline text-xl lg:text-2xl">View All</Link>
