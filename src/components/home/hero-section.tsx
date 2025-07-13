@@ -55,11 +55,12 @@ function HeroSection() {
             {/* Foreground content */}
             <div className="relative z-20 w-full md:pl-[72px] pt-[117px] md:pt-[176px] max-w-[756px] text-white">
                 <SnowFlake className="text-[#FFF4ED] w-[42px] h-9 md:w-[88px] md:h-[73px]" />
-                <div className="border border-[#BD5B00]/50 mt-11 mx-5 lg:ml-[87px] space-y-11 rounded-xl">
+                <div className="mt-11 mx-5 lg:ml-[87px] space-y-11 rounded-xl max-w-[343px] md:max-w-[670px] md:w-full">
                     <div>
                         <p className="font-semibold text-lg md:text-2xl">Get the Skin You Deserve</p>
-                        <h1 className="font-orbitron font-bold text-[28px] md:text-[56px] mt-4 mb-2">
-                            Skincare that Breathes With You
+                        <h1 className="font-orbitron font-bold text-2xl md:text-[56px] lg:leading-[78px] mt-4 mb-2">
+                            Skincare that <br />
+                            <span className="pl-5 lg:pl-10">Breathes With You</span>
                         </h1>
                         <p className="text-sm md:text-lg">
                             Nourish your glow. Own your skin. Shine, effortlessly.

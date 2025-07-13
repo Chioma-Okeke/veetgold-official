@@ -36,7 +36,7 @@ function Header() {
                     </nav>
                 </div>
                 <Search01 className='hidden lg:block size-6' />
-                <MenuIcon className='lg:hidden size-6 md:size-8' />
+                <MenuIcon className='lg:hidden size-8' />
             </div>
         </header>
     )
