@@ -1,9 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Search, Filter, Heart, ShoppingBag, Star, X } from "lucide-react"
+import { Search, Filter, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,7 +11,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
-import { IProduct, IProductCategory } from "@/types"
+import { IProductCategory } from "@/types"
 import ProductCard from "@/components/product/product-card"
 
 // Mock data - replace with actual Sanity.io data
@@ -101,8 +99,8 @@ const mockCategories = [
 ]
 
 export default function CatalogPage() {
-    const [products, setProducts] = useState(mockProducts)
-    const [categories, setCategories] = useState(mockCategories)
+    const [products] = useState(mockProducts)
+    const [categories] = useState(mockCategories)
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [sortBy, setSortBy] = useState("featured")
