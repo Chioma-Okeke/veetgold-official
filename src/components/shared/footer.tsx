@@ -11,11 +11,11 @@ const nigeriaPhoneRegex = /^(?:\+234|234|0)[789][01]\d{8}$/;
 function Footer() {
   return (
     <footer className='py-10 px-4 lg:px-32'>
-      <div className='w-full mas-w-[1170px] space-y-10 lg:flex gap-40 lg:gap-0 lg:justify-between'>
+      <div className='w-full mas-w-[1170px] space-y-10 lg:flex gap-40'>
         <div>
           <Logo variant='colored' />
         </div>
-        <div className='hidden lg:flex gap-[170px]'>
+        <div className='hidden lg:flex lg:justify-between'>
           {Object.entries(FOOTER_LINKS).map(([title, data]) => {
             return (
               <div className='space-y-6' key={title}>
@@ -32,7 +32,7 @@ function Footer() {
                       <div className='space-y-6'>
                         {Object.values(data).slice(0, 2).map((value, index) => {
                           return (
-                            <div key={index} className='flex items-end gap-3'>
+                            <div key={index} className='flex items-end gap-2'>
                               {nigeriaPhoneRegex.test(value) && <Call className="#1D1F2C size-5" />}
                               {emailRegex.test(value) && <Mail02 className="#1D1F2C size-5" />}
                               <p className='text-xl'>{value}</p>
