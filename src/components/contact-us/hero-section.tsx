@@ -60,7 +60,7 @@ function ContactPageHero() {
                             }
                         </div>
                     </div>
-                    <div className="max-w-[502px] w-full lg:mx-auto h-[505px] bg-white p-6 rounded-[12px] shadow-md ">
+                    <div className="max-w-[502px] w-full lg:mx-auto bg-white p-6 rounded-[12px] shadow-md ">
                         <ContactForm />
                     </div>
                 </MaxContainer>
