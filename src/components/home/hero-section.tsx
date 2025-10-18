@@ -10,6 +10,7 @@ import { heroImageData } from '@/lib/data';
 import { Button } from '../ui/button';
 import { useWindowWidth } from '@/hooks/use-width';
 import { SnowFlake } from '@/icons';
+import CustomButton from '../shared/custom-button';
 
 function HeroSection() {
     const swiperRef = useRef<SwiperClass | null>(null);
@@ -66,7 +67,8 @@ function HeroSection() {
                             Nourish your glow. Own your skin. Shine, effortlessly.
                         </p>
                     </div>
-                    <Button className="rounded-[64px]">Shop Now</Button>
+                    {/* <Button className="rounded-[64px]">Shop Now</Button> */}
+                    <CustomButton />
                     <div className="flex gap-10 text-white">
                         <div className="space-y-4">
                             <p className="font-semibold text-4xl lg:text-[40px]">+250K</p>

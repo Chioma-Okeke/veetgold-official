@@ -6,6 +6,7 @@ import Link from 'next/link'
 import ProductCard from '../product/product-card'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import MaxContainer from '../shared/max-container'
+import { Button } from '../ui/button'
 
 function NewArrivals({ sectionTitle }: { sectionTitle: string }) {
     const productGridRef = useRef<HTMLDivElement | null>(null);
@@ -78,21 +79,21 @@ function NewArrivals({ sectionTitle }: { sectionTitle: string }) {
                         {(showLeftArrow || showRightArrow) && (
                             <div className='absolute top-1/2 left-0 -translate-y-1/2 flex items-center justify-between w-full px-4 lg:px-0 pointer-events-none'>
                                 {showLeftArrow && (
-                                    <button
+                                    <Button
                                         onClick={() => scrollBy(-300)}
                                         className='bg-black/20 backdrop-blur-lg rounded-full p-1 text-white hover:bg-black/30 hover:scale-110 cursor-pointer transition duration-300 pointer-events-auto'
                                     >
                                         <ChevronLeft />
-                                    </button>
+                                    </Button>
                                 )}
 
                                 {showRightArrow && (
-                                    <button
+                                    <Button
                                         onClick={() => scrollBy(300)}
                                         className='bg-black/20 backdrop-blur-lg rounded-full p-1 text-white hover:bg-black/30 hover:scale-110 cursor-pointer transition duration-300 pointer-events-auto'
                                     >
                                         <ChevronRight />
-                                    </button>
+                                    </Button>
                                 )}
                             </div>
                         )}
