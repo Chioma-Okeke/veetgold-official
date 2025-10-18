@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '../ui/button'
 import Image from 'next/image'
 import PaddingContainer from '../shared/padding-container'
 import MaxContainer from '../shared/max-container'
