@@ -2,7 +2,6 @@ import React from 'react'
 import PaddingContainer from '../shared/padding-container'
 import MaxContainer from '../shared/max-container'
 import Image from 'next/image'
-import { Button } from '../ui/button'
 import CustomButton from '../shared/custom-button'
 
 function SectionUnderHero() {
