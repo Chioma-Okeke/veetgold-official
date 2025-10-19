@@ -15,7 +15,7 @@ function Footer() {
         <div>
           <Logo variant='colored' />
         </div>
-        <div className='hidden lg:flex lg:justify-between'>
+        <div className='hidden lg:flex lg:justify-between flex-1'>
           {Object.entries(FOOTER_LINKS).map(([title, data]) => {
             return (
               <div className='space-y-6' key={title}>
@@ -25,7 +25,7 @@ function Footer() {
                     Array.isArray(data) ? (
                       <ul className='flex flex-col gap-4'>
                         {data.map((link, index) => (
-                          <Link href={link.link} key={index} className='text-xl font-light'>{link.label}</Link>
+                          <Link href={link.link} key={index} className='text-xl font-light hover:text-primary transition-colors duration-300 ease-in-out'>{link.label}</Link>
                         ))}
                       </ul>
                     ) : (

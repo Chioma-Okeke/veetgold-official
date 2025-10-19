@@ -9,7 +9,7 @@ function FeaturedCollection() {
         <PaddingContainer>
             <MaxContainer className="space-y-[50px]">
                 <div className='space-y-2'>
-                    <h2 className='text-4xl lg:text-5xl font-semibold'>Our Featured Collections</h2>
+                    <h2 className='text-4xl lg:text-5xl max-sm:text-center max-sm:font-sans font-semibold'>Our Featured Collections</h2>
                 </div>
                 <CollectionDisplay/>
             </MaxContainer>

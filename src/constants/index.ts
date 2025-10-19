@@ -41,6 +41,6 @@ export const CONTACT_DATA = {
 }
 
 export const FOOTER_LINKS = {
-    "QUICK lINK": QUICK_LINKS,
+    "QUICK LINKS": QUICK_LINKS,
     "CONTACT": CONTACT_DATA,
 }

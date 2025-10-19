@@ -12,7 +12,7 @@ function ExternalPagesLayout({ children }: { children: React.ReactNode }) {
   
   return (
     <>
-      <PageBanner bannerText='🎉  Get 10% Bonus Today' />
+      {/* <PageBanner bannerText='🎉  Get 10% Bonus Today' /> */}
       <div className='relative'>
         {pathname !== "/product-catalog" && <Header />}
         <main>{children}</main>

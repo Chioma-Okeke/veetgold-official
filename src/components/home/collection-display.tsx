@@ -23,7 +23,7 @@ function CollectionDisplay() {
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as CollectionKey)}>
             <div className="mb-6 sm:hidden">
                 <Select value={activeTab} onValueChange={(value) => setActiveTab(value as CollectionKey)}>
-                    <SelectTrigger className="w-full h-[44px] bg-white/30 text-white rounded-[12px] border-none">
+                    <SelectTrigger className="w-full h-[44px] bg-white/30 text-white py-3.5 px-4 rounded-[12px] border-none">
                         <SelectValue defaultValue={activeTab} />
                     </SelectTrigger>
                     <SelectContent className="bg-white text-[#55795E]">

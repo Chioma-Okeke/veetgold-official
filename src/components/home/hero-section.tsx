@@ -54,7 +54,7 @@ function HeroSection() {
             </Swiper>
 
             {/* Foreground content */}
-            <div className="relative z-20 w-full md:pl-[72px] pt-[117px] md:pt-[176px] max-w-[756px] text-white">
+            <div className="relative z-20 w-full lg:pb-12 md:pl-[72px] pt-[117px] md:pt-[176px] max-w-[756px] text-white">
                 <SnowFlake className="text-[#FFF4ED] w-[42px] h-9 md:w-[88px] md:h-[73px]" />
                 <div className="mt-11 mx-5 lg:ml-[87px] space-y-11 rounded-xl max-w-[343px] md:max-w-[670px] md:w-full">
                     <div>
@@ -90,7 +90,7 @@ function HeroSection() {
                             key={index}
                             onClick={() => swiperRef.current?.slideToLoop(index)}
                             variant={currentIndex === index ? "outline" : "default"}
-                            className="size-2.5 rounded-full p-1 transition-colors"
+                            className="size-2.5 rounded-full p-1"
                         />
                     ))}
                 </div>
