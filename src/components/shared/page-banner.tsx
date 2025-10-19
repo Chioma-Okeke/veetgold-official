@@ -10,7 +10,7 @@ type PageBannerProp = {
 function PageBanner({bannerText, bannerColor = 'bg-black', textColor = 'text-white'}: PageBannerProp) {
   return (
     <div className={`${bannerColor} py-4 w-full`}>
-        <p className={cn('text-center lg:text-[22px] currentColor', textColor)}>{bannerText}</p>
+        <p className={cn('text-center currentColor', textColor)}>{bannerText}</p>
     </div>
   )
 }

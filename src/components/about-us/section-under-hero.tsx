@@ -3,6 +3,7 @@ import PaddingContainer from '../shared/padding-container'
 import MaxContainer from '../shared/max-container'
 import Image from 'next/image'
 import { Button } from '../ui/button'
+import CustomButton from '../shared/custom-button'
 
 function SectionUnderHero() {
     return (
@@ -30,9 +31,7 @@ function SectionUnderHero() {
                                     <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center'/>
                                 </div>
                             </div>
-                            <Button>
-                                Shop now
-                            </Button>
+                            <CustomButton />
                         </div>
                     </div>
                 </MaxContainer>

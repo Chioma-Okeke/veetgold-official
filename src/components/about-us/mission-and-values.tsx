@@ -14,7 +14,7 @@ function MissionAndValues() {
                         missionAndValues.map((item, index) => {
                             const isOdd = (index) % 2 !== 0
                             return (
-                                <div key={item.title} className={cn('flex items-center gap-20 py-10 lg:py-16 flex-col', {
+                                <div key={item.title} className={cn('flex items-center gap-10 lg:gap-20 py-10 lg:py-16 flex-col', {
                                     'lg:flex-row-reverse ': isOdd,
                                     'lg:flex-row': !isOdd
                                 })}>
