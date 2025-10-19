@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-// Zod schema
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email"),
@@ -30,7 +29,6 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm() {
   const [charCount, setCharCount] = useState(0);
-
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -59,7 +57,7 @@ export default function ContactForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Your Name" className="py-4.5 px-4" {...field} />
+                <Input placeholder="Your Name" className="py-4.5 px-4 rounded-xl" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -72,7 +70,7 @@ export default function ContactForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Your Email" className="py-4.5 px-4" type="email" {...field} />
+                <Input placeholder="Your Email" className="py-4.5 px-4 rounded-xl" type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -85,7 +83,7 @@ export default function ContactForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Your Phone" className="py-4.5 px-4" type="tel" {...field} />
+                <Input placeholder="Your Phone" className="py-4.5 px-4 rounded-xl" type="tel" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -108,7 +106,7 @@ export default function ContactForm() {
                       field.onChange(e);
                       setCharCount(e.target.value.length);
                     }}
-                    className="px-4 pt-4 resize-none h-[156px] max-w-full"
+                    className="px-4 pt-4 resize-none h-[156px] max-w-full rounded-xl"
                   />
                   <div className="absolute bottom-2 right-3 text-xs text-gray-400">
                     {charCount}/1000
