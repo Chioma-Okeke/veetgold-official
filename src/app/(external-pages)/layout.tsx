@@ -14,7 +14,7 @@ function ExternalPagesLayout({ children }: { children: React.ReactNode }) {
     <>
       {/* <PageBanner bannerText='🎉  Get 10% Bonus Today' /> */}
       <div className='relative'>
-        {pathname !== "/product-catalog" && <Header />}
+        {<Header />}
         <main>{children}</main>
         <Footer />
         <PageBanner bannerText='© Copyright VeetGold 2025, All Rights Reserved' textColor='text-white/50' />

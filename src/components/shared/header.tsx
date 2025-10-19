@@ -14,11 +14,13 @@ function Header() {
     const pathname = usePathname()
 
     return (
-        <header className='z-50 w-full absolute top-0 left-0 p-4 lg:px-[100px] lg:py-6 lg:bg-black/33 text-white'>
-            <div className='flex items-center justify-between'>
-                <div className='flex items-center lg:gap-32'>
+        <header className={cn('z-50 w-full p-4 lg:px-[100px] lg:py-6 lg:bg-black/33 text-white', {
+            'absolute top-0 left-0': pathname !== "/product-catalog"
+        })}>
+            <div className='flex max-lg:flex-row-reverse items-center justify-between'>
+                <div className='flex items-center lg:gap-32 max-lg:flex-1 max-lg:justify-center'>
                     <Link href="/">
-                        <Logo variant={(pathname === "/about-us" && width && width < 1024) ? "colored" : "default"} />
+                        <Logo variant={(pathname === "/about-us" || (pathname === "/product-catalog" && width && width < 1024)) ? "colored" : "default"} />
                     </Link>
                     <nav className='hidden lg:block'>
                         <ul className='flex items-center gap-8'>
@@ -36,7 +38,7 @@ function Header() {
                     </nav>
                 </div>
                 <Search01 className='hidden lg:block size-6' />
-                <MenuIcon className='lg:hidden size-8' />
+                <MenuIcon className='lg:hidden size-8' color={pathname === "/product-catalog" || pathname === "/about-us" ? "black" : "currentColor"} />
             </div>
         </header>
     )

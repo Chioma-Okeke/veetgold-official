@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
-import { Search, Filter, X } from "lucide-react"
+import { Search, Filter, X, ArrowDownUp } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { IProductCategory } from "@/types"
 import ProductCard from "@/components/product/product-card"
+import MaxContainer from "@/components/shared/max-container"
 
 // Mock data - replace with actual Sanity.io data
 const mockProducts = [
@@ -167,27 +168,24 @@ export default function CatalogPage() {
     const activeFiltersCount = selectedCategories.length + (showOnlyInStock ? 1 : 0) + (showOnlyFeatured ? 1 : 0)
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-pink-50">
+        <div className="min-h-screen">
             {/* Header */}
-            <div className="bg-white/80 backdrop-blur-sm border-b border-rose-100 sticky top-0 z-40">
+            <div className="bg-white/80 backdrop-blur-sm border-b border-primary">
                 <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
                     {/* Mobile Header */}
                     <div className="block lg:hidden space-y-4">
-                        <div className="text-center">
-                            <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-                                Beauty Collection
-                            </h1>
-                            <p className="text-rose-600/70 text-sm mt-1">Discover your perfect look</p>
-                        </div>
+                        <h1 className="text-2xl sm:text-3xl font-semibold">
+                            All Products
+                        </h1>
 
                         {/* Mobile Search */}
                         <div className="relative">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-rose-400 h-4 w-4" />
-                            <Input
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-4 w-4" />
+                            <input
                                 placeholder="Search products..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="pl-10 border-rose-200 focus:border-rose-400 focus:ring-rose-400 h-11"
+                                className="pl-10 focus:outline-none focus:ring-0 focus-visible:ring-0 h-11 w-full transition-all duration-300 ease-in-out border-b border-transparent focus:border-primary px-3"
                             />
                         </div>
 
@@ -197,12 +195,12 @@ export default function CatalogPage() {
                                 <SheetTrigger asChild>
                                     <Button
                                         variant="outline"
-                                        className="flex-1 border-rose-200 text-rose-600 hover:bg-rose-50 bg-transparent relative"
+                                        className="flex-1 border-none shadow-none justify-start relative w-fit"
                                     >
                                         <Filter className="h-4 w-4 mr-2" />
-                                        Filters
+                                        <p>Filters</p>
                                         {activeFiltersCount > 0 && (
-                                            <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-rose-500 text-white rounded-full flex items-center justify-center">
+                                            <Badge className="ml-2 h-5 w-5 p-0 text-xs bg-primary text-white rounded-full flex items-center justify-center">
                                                 {activeFiltersCount}
                                             </Badge>
                                         )}
@@ -210,10 +208,10 @@ export default function CatalogPage() {
                                 </SheetTrigger>
                                 <SheetContent side="left" className="w-[300px] sm:w-[350px]">
                                     <SheetHeader>
-                                        <SheetTitle className="text-rose-900">Filters</SheetTitle>
+                                        <SheetTitle >Filters</SheetTitle>
                                         <SheetDescription>Refine your product search</SheetDescription>
                                     </SheetHeader>
-                                    <div className="mt-6 space-y-6">
+                                    <div className="space-y-6 pl-4">
                                         <FilterSection
                                             categories={categories}
                                             selectedCategories={selectedCategories}
@@ -228,8 +226,9 @@ export default function CatalogPage() {
                             </Sheet>
 
                             <Select value={sortBy} onValueChange={setSortBy}>
-                                <SelectTrigger className="flex-1 border-rose-200 focus:border-rose-400 focus:ring-rose-400">
-                                    <SelectValue placeholder="Sort" />
+                                <SelectTrigger className="flex-1 flex justify-end items-center gap-2 border-none shadow-none focus:ring-0 focus-visible:ring-0" showIcon={false}>
+                                    <ArrowDownUp />
+                                <p>Sort By</p>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="featured">Featured</SelectItem>
@@ -244,27 +243,27 @@ export default function CatalogPage() {
                     {/* Desktop Header */}
                     <div className="hidden lg:flex lg:items-center gap-6">
                         <div className="flex-1">
-                            <h1 className="text-3xl xl:text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-                                Beauty Collection
+                            <h1 className="text-3xl xl:text-4xl font-semibold">
+                                All Products
                             </h1>
-                            <p className="text-rose-600/70 mt-1">Discover your perfect look</p>
                         </div>
 
                         {/* Desktop Search */}
                         <div className="relative flex-1 max-w-md">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-rose-400 h-4 w-4" />
-                            <Input
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-4 w-4" />
+                            <input
                                 placeholder="Search products..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="pl-10 border-rose-200 focus:border-rose-400 focus:ring-rose-400"
+                                className="pl-10 focus:outline-none focus:ring-0 focus-visible:ring-0 h-11 border-b border-transparent focus:border-primary focus:ring-primary w-full transition-all duration-300 ease-in-out"
                             />
                         </div>
 
                         {/* Desktop Sort */}
                         <Select value={sortBy} onValueChange={setSortBy}>
-                            <SelectTrigger className="w-48 border-rose-200 focus:border-rose-400 focus:ring-rose-400">
-                                <SelectValue placeholder="Sort by" />
+                            <SelectTrigger className="cursor-pointer flex items-center gap-2 border-none shadow-none focus:ring-0 focus-visible:ring-0" showIcon={false}>
+                                <ArrowDownUp />
+                                <p>Sort By</p>
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="featured">Featured</SelectItem>
@@ -277,11 +276,11 @@ export default function CatalogPage() {
                 </div>
             </div>
 
-            <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-8">
+            <MaxContainer className="py-4 sm:py-8 max-w-[1440px] px-3">
                 <div className="flex gap-6 lg:gap-8">
                     {/* Desktop Sidebar */}
                     <div className="hidden lg:block w-64 xl:w-72 flex-shrink-0">
-                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-rose-100 sticky top-32">
+                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-rose-100">
                             <FilterSection
                                 categories={categories}
                                 selectedCategories={selectedCategories}
@@ -298,7 +297,7 @@ export default function CatalogPage() {
                     <div className="flex-1 min-w-0">
                         {/* Results Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
-                            <p className="text-rose-600/70 text-sm sm:text-base">
+                            <p className="text-sm sm:text-base">
                                 {filteredAndSortedProducts.length} product{filteredAndSortedProducts.length !== 1 ? "s" : ""} found
                             </p>
 
@@ -306,12 +305,12 @@ export default function CatalogPage() {
                             {(selectedCategories.length > 0 || searchQuery || showOnlyInStock || showOnlyFeatured) && (
                                 <div className="flex flex-wrap items-center gap-2">
                                     {searchQuery && (
-                                        <Badge variant="secondary" className="bg-rose-100 text-rose-700 text-xs">
+                                        <Badge variant="secondary" className="bg-primary/10 text-primary text-xs">
                                             Search: {searchQuery}
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                className="h-4 w-4 p-0 ml-1 hover:bg-rose-200"
+                                                className="h-4 w-4 p-0 ml-1 hover:bg-primary/10"
                                                 onClick={() => setSearchQuery("")}
                                             >
                                                 <X className="h-3 w-3" />
@@ -319,12 +318,12 @@ export default function CatalogPage() {
                                         </Badge>
                                     )}
                                     {selectedCategories.map((category) => (
-                                        <Badge key={category} variant="secondary" className="bg-rose-100 text-rose-700 text-xs">
+                                        <Badge key={category} variant="secondary" className="bg-primary/10 text-primary text-xs">
                                             {categories.find((c) => c.slug.current === category)?.title}
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                className="h-4 w-4 p-0 ml-1 hover:bg-rose-200"
+                                                className="h-4 w-4 p-0 ml-1 hover:bg-primary/10"
                                                 onClick={() => handleCategoryChange(category, false)}
                                             >
                                                 <X className="h-3 w-3" />
@@ -340,7 +339,7 @@ export default function CatalogPage() {
                                             setShowOnlyInStock(false)
                                             setShowOnlyFeatured(false)
                                         }}
-                                        className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 text-xs h-7"
+                                        className="text-primary hover:text-primary/80 hover:bg-primary/10 text-xs h-7"
                                     >
                                         Clear all
                                     </Button>
@@ -349,7 +348,7 @@ export default function CatalogPage() {
                         </div>
 
                         {/* Product Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
+                        <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
                             {filteredAndSortedProducts.map((product) => (
                                 <ProductCard key={product._id} product={product} />
                             ))}
@@ -358,11 +357,11 @@ export default function CatalogPage() {
                         {/* Empty State */}
                         {filteredAndSortedProducts.length === 0 && (
                             <div className="text-center py-12 sm:py-16">
-                                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-rose-100 flex items-center justify-center">
-                                    <Search className="h-6 w-6 sm:h-8 sm:w-8 text-rose-400" />
+                                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <Search className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                                 </div>
-                                <h3 className="text-lg sm:text-xl font-semibold text-rose-900 mb-2">No products found</h3>
-                                <p className="text-rose-600/70 mb-4 text-sm sm:text-base px-4">Try adjusting your search or filters</p>
+                                <h3 className="text-lg sm:text-xl font-semibold mb-2">No products found</h3>
+                                <p className="mb-4 text-sm sm:text-base px-4">Try adjusting your search or filters</p>
                                 <Button
                                     onClick={() => {
                                         setSelectedCategories([])
@@ -370,7 +369,7 @@ export default function CatalogPage() {
                                         setShowOnlyInStock(false)
                                         setShowOnlyFeatured(false)
                                     }}
-                                    className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600"
+                                    className="rounded-lg"
                                 >
                                     Clear all filters
                                 </Button>
@@ -378,7 +377,7 @@ export default function CatalogPage() {
                         )}
                     </div>
                 </div>
-            </div>
+            </MaxContainer>
         </div>
     )
 }
@@ -403,7 +402,7 @@ function FilterSection({
     return (
         <div className="space-y-6">
             <div>
-                <h3 className="font-semibold text-rose-900 mb-3 text-sm sm:text-base">Categories</h3>
+                <h3 className="font-semibold mb-3">Categories</h3>
                 <div className="space-y-3">
                     {categories.map((category) => (
                         <div key={category._id} className="flex items-center space-x-3">
@@ -411,9 +410,9 @@ function FilterSection({
                                 id={category.slug.current}
                                 checked={selectedCategories.includes(category.slug.current)}
                                 onCheckedChange={(checked) => onCategoryChange(category.slug.current, checked as boolean)}
-                                className="border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500"
+                                className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                             />
-                            <Label htmlFor={category.slug.current} className="text-sm text-rose-700 cursor-pointer flex-1">
+                            <Label htmlFor={category.slug.current} className="cursor-pointer flex-1">
                                 {category.title}
                             </Label>
                         </div>
@@ -421,19 +420,19 @@ function FilterSection({
                 </div>
             </div>
 
-            <Separator className="bg-rose-200" />
+            <Separator className="bg-primary" />
 
             <div>
-                <h3 className="font-semibold text-rose-900 mb-3 text-sm sm:text-base">Availability</h3>
+                <h3 className="font-semibold mb-3">Availability</h3>
                 <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                         <Checkbox
                             id="in-stock"
                             checked={showOnlyInStock}
                             onCheckedChange={setShowOnlyInStock}
-                            className="border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500"
+                            className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                         />
-                        <Label htmlFor="in-stock" className="text-sm text-rose-700 cursor-pointer flex-1">
+                        <Label htmlFor="in-stock" className="text-sm cursor-pointer flex-1">
                             In Stock Only
                         </Label>
                     </div>
@@ -442,9 +441,9 @@ function FilterSection({
                             id="featured"
                             checked={showOnlyFeatured}
                             onCheckedChange={setShowOnlyFeatured}
-                            className="border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500"
+                            className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                         />
-                        <Label htmlFor="featured" className="text-sm text-rose-700 cursor-pointer flex-1">
+                        <Label htmlFor="featured" className="text-sm cursor-pointer flex-1">
                             Featured Only
                         </Label>
                     </div>
