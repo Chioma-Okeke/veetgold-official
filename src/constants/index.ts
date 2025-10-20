@@ -35,8 +35,12 @@ export const QUICK_LINKS = [
 export const CONTACT_DATA = {
     EMAIL: "veetgold@example.com",
     PHONE_NUMBER: "+2348087737997",
-    ADDRESS: "123 Veetgold Street, Lagos, Nigeria",
-    INSTAGRAM: "https://instagram.com/veetgold",
+    ADDRESS: [
+        "Veetgold Plaza Abia gate, Trade fair complex, Lagos, Nigeria",
+        "A5/44 Kano plaza, Trade fair Complex, Lagos, Nigeria",
+        "D20/29 Abia plaza, Trade fair complex, Lagos, Nigeria",
+    ],
+    INSTAGRAM: "https://www.instagram.com/veetgoldofficialpage?igsh=MWo0eHJqZGQyamlmMQ==",
     FACEBOOK: "https://facebook.com/veetgold",
 }
 

@@ -6,8 +6,9 @@ import { HEADER_URLS } from '@/constants'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
-import { MenuIcon, Search01 } from '@/icons'
+import { Search01 } from '@/icons'
 import { useWindowWidth } from '@/hooks/use-width'
+import MobileSideBarNav from './mobile-side-bar-nav'
 
 function Header() {
     const width = useWindowWidth()
@@ -38,7 +39,7 @@ function Header() {
                     </nav>
                 </div>
                 <Search01 className='hidden lg:block size-6' />
-                <MenuIcon className='lg:hidden size-8' color={pathname === "/product-catalog" || pathname === "/about-us" ? "black" : "currentColor"} />
+                <MobileSideBarNav />
             </div>
         </header>
     )
