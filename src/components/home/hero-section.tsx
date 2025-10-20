@@ -11,6 +11,7 @@ import { Button } from '../ui/button';
 import { useWindowWidth } from '@/hooks/use-width';
 import { SnowFlake } from '@/icons';
 import CustomButton from '../shared/custom-button';
+import { motion } from 'framer-motion';
 
 function HeroSection() {
     const swiperRef = useRef<SwiperClass | null>(null);
@@ -24,37 +25,53 @@ function HeroSection() {
     return (
         <section className="relative h-fit pb-24 lg:pb-12">
             {/* Background Swiper */}
-            <Swiper
-                spaceBetween={0}
-                speed={1000}
-                autoplay={{ delay: 6000, disableOnInteraction: false }}
-                effect="fade"
-                modules={[Autoplay, EffectFade, Mousewheel]}
-                loop
-                onSlideChange={handleSlideChange}
-                onSwiper={(swiper) => {
-                    swiperRef.current = swiper;
-                }}
-                className='absolute inset-0 z-0 w-full swiper-class'
-            >
-                {heroImageData.map(({ imgSrc, alt }, index) => (
-                    <SwiperSlide key={index} className="relative w-full">
-                        <div className="relative z-0 w-full h-full after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/40 after:to-transparent">
-                            <Image
-                                priority
-                                alt={alt}
-                                src={imgSrc}
-                                fill
-                                sizes="100vw"
-                                className="object-cover object-center"
-                            />
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            <div>
+                <Swiper
+                    spaceBetween={0}
+                    speed={1000}
+                    autoplay={{ delay: 6000, disableOnInteraction: false }}
+                    effect="fade"
+                    modules={[Autoplay, EffectFade, Mousewheel]}
+                    loop
+                    onSlideChange={handleSlideChange}
+                    onSwiper={(swiper) => {
+                        swiperRef.current = swiper;
+                    }}
+                    className='absolute inset-0 z-0 w-full swiper-class bg-black/60 '
+                >
+                    {heroImageData.map(({ imgSrc, alt }, index) => (
+                        <SwiperSlide key={index} className="relative w-full">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 1.2 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 1.2, ease: "easeOut" }}
+                                className="relative z-0 w-full h-full after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/40 after:to-transparent">
+                                <Image
+                                    priority
+                                    alt={alt}
+                                    src={imgSrc}
+                                    fill
+                                    sizes="100vw"
+                                    className="object-cover object-center"
+                                />
+                            </motion.div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
 
             {/* Foreground content */}
-            <div className="relative z-20 w-full lg:pb-12 md:pl-[72px] pt-[117px] md:pt-[176px] max-w-[756px] text-white">
+            <motion.div
+                initial={{ opacity: 0, x: -100, scale: 0.8 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{
+                    duration: 0.8,
+                    ease: [0.175, 0.885, 0.32, 1.3],
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 12
+                }}
+                className="relative z-20 w-full lg:pb-12 md:pl-[72px] pt-[117px] md:pt-[176px] max-w-[756px] text-white">
                 <SnowFlake className="text-[#FFF4ED] w-[42px] h-9 md:w-[88px] md:h-[73px]" />
                 <div className="mt-11 mx-5 lg:ml-[87px] space-y-11 rounded-xl max-w-[343px] md:max-w-[670px] md:w-full">
                     <div>
@@ -67,7 +84,6 @@ function HeroSection() {
                             Nourish your glow. Own your skin. Shine, effortlessly.
                         </p>
                     </div>
-                    {/* <Button className="rounded-[64px]">Shop Now</Button> */}
                     <CustomButton />
                     <div className="flex gap-10 text-white">
                         <div className="space-y-4">
@@ -80,7 +96,7 @@ function HeroSection() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Mobile pagination dots */}
             {width < 1024 && (
