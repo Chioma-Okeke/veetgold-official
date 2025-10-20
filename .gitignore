@@ -19,6 +19,11 @@
 
 # production
 /build
+/dist
+
+# sanity
+/.sanity
+sanity.cli.ts.bak
 
 # misc
 .DS_Store
