@@ -3,12 +3,9 @@
 import Footer from '@/components/shared/footer'
 import Header from '@/components/shared/header'
 import PageBanner from '@/components/shared/page-banner'
-import { usePathname } from 'next/navigation'
 import React from 'react'
 
 function ExternalPagesLayout({ children }: { children: React.ReactNode }) {
-
-  const pathname = usePathname()
   
   return (
     <>
