@@ -1,0 +1,40 @@
+"use client"
+
+import { ChevronUp } from "lucide-react";
+import React from "react";
+
+function BackToTop() {
+    const [showScrollTopButton, setShowScrollTopButton] = React.useState(false);
+
+    React.useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                setShowScrollTopButton(true);
+            } else {
+                setShowScrollTopButton(false);
+            }
+        });
+    }, []);
+
+    function scrollTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+
+    return (
+        <div>
+            {showScrollTopButton && (
+                <ChevronUp
+                    size={50}
+                    onClick={scrollTop}
+                    color="white"
+                    className="fixed bottom-4 right-5 bg-primary p-2 cursor-pointer rounded-full shadow-lg transition ease-out hover:scale-110 duration-300 z-50"
+                />
+            )}
+        </div>
+    );
+}
+
+export default BackToTop;

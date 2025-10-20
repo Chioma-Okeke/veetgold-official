@@ -13,7 +13,13 @@ function ProductCard({ product }: { product?: IProduct }) {
         <div className='w-full h-full max-w-[232px] lg:max-w-[398px] lg:py-6 space-y-6 rounded-3xl'>
             <div className='relative'>
                 <div className='overflow-hidden w-full aspect-[364/455] max-w-[364px] rounded-3xl'>
-                    <div className="relative w-full h-full">
+                    <motion.div
+                        initial={pathname === "/product-catalog" ? { filter: "blur(20px)", opacity: 0.7 } : {}}
+                        whileInView={pathname === "/product-catalog" ? { filter: "blur(0px)", opacity: 1 } : {}}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="relative w-full h-full rounded-xl"
+                    >
                         <Image loading='lazy' src="https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/cream_y167ne.webp" fill sizes='100vw' className="object-cover object-center" alt="product image" />
                         {pathname === "/" && <motion.div
                             initial={{ y: "0%" }}
@@ -22,7 +28,7 @@ function ProductCard({ product }: { product?: IProduct }) {
                             transition={{ duration: 0.9, ease: "easeOut" }}
                             className="absolute inset-0 bg-white origin-bottom"
                         />}
-                    </div>
+                    </motion.div>
                 </div>
                 <Badge className="absolute top-1.5 right-1.5 lg:right-2 lg:top-4 bg-[#4C8E2C] py-1 px-2 lg:py-2.5 lg:px-4 text-[8px] lg:text-lg h-fit rounded-[100px]">New</Badge>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { Search, Filter, X, ArrowDownUp } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -169,8 +170,14 @@ export default function CatalogPage() {
     return (
         <div className="min-h-screen">
             {/* Header */}
-            <div className="bg-white/80 backdrop-blur-sm border-b border-primary">
-                <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
+            <div
+                className="bg-white/80 backdrop-blur-sm border-b border-primary">
+                <motion.div
+                    initial={{ opacity: 0, y: -50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
                     {/* Mobile Header */}
                     <div className="block lg:hidden space-y-4">
                         <h1 className="text-2xl sm:text-3xl font-semibold">
@@ -227,7 +234,7 @@ export default function CatalogPage() {
                             <Select value={sortBy} onValueChange={setSortBy}>
                                 <SelectTrigger className="flex-1 flex justify-end items-center gap-2 border-none shadow-none focus:ring-0 focus-visible:ring-0" showIcon={false}>
                                     <ArrowDownUp />
-                                <p>Sort By</p>
+                                    <p>Sort By</p>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="featured">Featured</SelectItem>
@@ -272,14 +279,19 @@ export default function CatalogPage() {
                             </SelectContent>
                         </Select>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             <MaxContainer className="py-4 sm:py-8 max-w-[1440px] px-3">
                 <div className="flex gap-6 lg:gap-8">
                     {/* Desktop Sidebar */}
                     <div className="hidden lg:block w-64 xl:w-72 flex-shrink-0">
-                        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-rose-100">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.7, ease: "easeOut" }}
+                            className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-rose-100">
                             <FilterSection
                                 categories={categories}
                                 selectedCategories={selectedCategories}
@@ -289,92 +301,192 @@ export default function CatalogPage() {
                                 showOnlyFeatured={showOnlyFeatured}
                                 setShowOnlyFeatured={setShowOnlyFeatured}
                             />
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Product Grid */}
-                    <div className="flex-1 min-w-0">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        className="flex-1 min-w-0">
                         {/* Results Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
-                            <p className="text-sm sm:text-base">
-                                {filteredAndSortedProducts.length} product{filteredAndSortedProducts.length !== 1 ? "s" : ""} found
-                            </p>
+                            <motion.p
+                                key={filteredAndSortedProducts.length}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-sm sm:text-base"
+                            >
+                                <motion.span
+                                    key={`count-${filteredAndSortedProducts.length}`}
+                                    initial={{ scale: 1.2, color: "#ef4444" }}
+                                    animate={{ scale: 1, color: "inherit" }}
+                                    transition={{ duration: 0.4 }}
+                                >
+                                    {filteredAndSortedProducts.length}
+                                </motion.span> product{filteredAndSortedProducts.length !== 1 ? "s" : ""} found
+                            </motion.p>
 
                             {/* Active Filters - Mobile */}
-                            {(selectedCategories.length > 0 || searchQuery || showOnlyInStock || showOnlyFeatured) && (
-                                <div className="flex flex-wrap items-center gap-2">
-                                    {searchQuery && (
-                                        <Badge variant="secondary" className="bg-primary/10 text-primary text-xs">
-                                            Search: {searchQuery}
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                className="h-4 w-4 p-0 ml-1 hover:bg-primary/10"
-                                                onClick={() => setSearchQuery("")}
-                                            >
-                                                <X className="h-3 w-3" />
-                                            </Button>
-                                        </Badge>
-                                    )}
-                                    {selectedCategories.map((category) => (
-                                        <Badge key={category} variant="secondary" className="bg-primary/10 text-primary text-xs">
-                                            {categories.find((c) => c.slug.current === category)?.title}
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                className="h-4 w-4 p-0 ml-1 hover:bg-primary/10"
-                                                onClick={() => handleCategoryChange(category, false)}
-                                            >
-                                                <X className="h-3 w-3" />
-                                            </Button>
-                                        </Badge>
-                                    ))}
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => {
-                                            setSelectedCategories([])
-                                            setSearchQuery("")
-                                            setShowOnlyInStock(false)
-                                            setShowOnlyFeatured(false)
-                                        }}
-                                        className="text-primary hover:text-primary/80 hover:bg-primary/10 text-xs h-7"
+                            <AnimatePresence>
+                                {(selectedCategories.length > 0 || searchQuery || showOnlyInStock || showOnlyFeatured) && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="flex flex-wrap items-center gap-2"
                                     >
-                                        Clear all
-                                    </Button>
-                                </div>
-                            )}
+                                        <AnimatePresence>
+                                            {searchQuery && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                                                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                                                    exit={{ opacity: 0, scale: 0.8, x: -20 }}
+                                                    transition={{ duration: 0.2 }}
+                                                >
+                                                    <Badge variant="secondary" className="bg-primary/10 text-primary text-xs">
+                                                        Search: {searchQuery}
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            className="h-4 w-4 p-0 ml-1 hover:bg-primary/10"
+                                                            onClick={() => setSearchQuery("")}
+                                                        >
+                                                            <X className="h-3 w-3" />
+                                                        </Button>
+                                                    </Badge>
+                                                </motion.div>
+                                            )}
+                                            {selectedCategories.map((category) => (
+                                                <motion.div
+                                                    key={category}
+                                                    initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                                                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                                                    exit={{ opacity: 0, scale: 0.8, x: -20 }}
+                                                    transition={{ duration: 0.2 }}
+                                                >
+                                                    <Badge variant="secondary" className="bg-primary/10 text-primary text-xs">
+                                                        {categories.find((c) => c.slug.current === category)?.title}
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            className="h-4 w-4 p-0 ml-1 hover:bg-primary/10"
+                                                            onClick={() => handleCategoryChange(category, false)}
+                                                        >
+                                                            <X className="h-3 w-3" />
+                                                        </Button>
+                                                    </Badge>
+                                                </motion.div>
+                                            ))}
+                                        </AnimatePresence>
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 0.1 }}
+                                        >
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                onClick={() => {
+                                                    setSelectedCategories([])
+                                                    setSearchQuery("")
+                                                    setShowOnlyInStock(false)
+                                                    setShowOnlyFeatured(false)
+                                                }}
+                                                className="text-primary hover:text-primary/80 hover:bg-primary/10 text-xs h-7"
+                                            >
+                                                Clear all
+                                            </Button>
+                                        </motion.div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
 
                         {/* Product Grid */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
-                            {filteredAndSortedProducts.map((product) => (
-                                <ProductCard key={product._id} product={product} />
-                            ))}
-                        </div>
+                        <motion.div
+                            layout
+                            className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6"
+                        >
+                            <AnimatePresence>
+                                {filteredAndSortedProducts.map((product, index) => (
+                                    <motion.div
+                                        key={product._id}
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                                        transition={{
+                                            duration: 0.4,
+                                            delay: index * 0.05,
+                                            layout: { duration: 0.3 }
+                                        }}
+                                    >
+                                        <ProductCard product={product} />
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
 
                         {/* Empty State */}
-                        {filteredAndSortedProducts.length === 0 && (
-                            <div className="text-center py-12 sm:py-16">
-                                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                                    <Search className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-                                </div>
-                                <h3 className="text-lg sm:text-xl font-semibold mb-2">No products found</h3>
-                                <p className="mb-4 text-sm sm:text-base px-4">Try adjusting your search or filters</p>
-                                <Button
-                                    onClick={() => {
-                                        setSelectedCategories([])
-                                        setSearchQuery("")
-                                        setShowOnlyInStock(false)
-                                        setShowOnlyFeatured(false)
-                                    }}
-                                    className="rounded-lg"
+                        <AnimatePresence>
+                            {filteredAndSortedProducts.length === 0 && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.4, delay: 0.2 }}
+                                    className="text-center py-12 sm:py-16"
                                 >
-                                    Clear all filters
-                                </Button>
-                            </div>
-                        )}
-                    </div>
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                                        className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center"
+                                    >
+                                        <Search className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+                                    </motion.div>
+                                    <motion.h3
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 }}
+                                        className="text-lg sm:text-xl font-semibold mb-2"
+                                    >
+                                        No products found
+                                    </motion.h3>
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.6 }}
+                                        className="mb-4 text-sm sm:text-base px-4"
+                                    >
+                                        Try adjusting your search or filters
+                                    </motion.p>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.7 }}
+                                    >
+                                        <Button
+                                            onClick={() => {
+                                                setSelectedCategories([])
+                                                setSearchQuery("")
+                                                setShowOnlyInStock(false)
+                                                setShowOnlyFeatured(false)
+                                            }}
+                                            className="rounded-lg"
+                                        >
+                                            Clear all filters
+                                        </Button>
+                                    </motion.div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
                 </div>
             </MaxContainer>
         </div>

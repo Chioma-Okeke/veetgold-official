@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
+import BackToTop from "@/components/shared/back-to-top";
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${orbitron.variable} ${openSans.variable} antialiased text-greyscale-text-title`}
       >
         {children}
+        <BackToTop />
       </body>
     </html>
   );
