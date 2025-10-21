@@ -33,8 +33,8 @@ function Footer() {
                         {Object.values(data).slice(0, 2).map((value, index) => {
                           return (
                             <div key={index} className='flex items-end gap-2'>
-                              {nigeriaPhoneRegex.test(value) && <Call className="#1D1F2C size-5" />}
-                              {emailRegex.test(value) && <Mail02 className="#1D1F2C size-5" />}
+                              {nigeriaPhoneRegex.test(value as string) && <Call className="#1D1F2C size-5" />}
+                              {emailRegex.test(value as string) && <Mail02 className="#1D1F2C size-5" />}
                               <p className='text-xl'>{value}</p>
                             </div>
                           )
@@ -88,8 +88,8 @@ const MobileFooterLinks = () => {
                     {Object.values(data).slice(0, 2).map((value, index) => {
                       return (
                         <div key={index} className='flex items-end gap-3'>
-                          {nigeriaPhoneRegex.test(value) && <Call className="#1D1F2C size-5" />}
-                          {emailRegex.test(value) && <Mail02 className="#1D1F2C size-5" />}
+                          {nigeriaPhoneRegex.test(value as string) && <Call className="#1D1F2C size-5" />}
+                          {emailRegex.test(value as string) && <Mail02 className="#1D1F2C size-5" />}
                           <p>{value}</p>
                         </div>
                       )
