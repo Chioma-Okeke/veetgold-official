@@ -16,15 +16,15 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tolce-learning-hub.vercel.app/'),
+  metadataBase: new URL('https://veetgold-official.vercel.app/'),
   title: {
     default: "Veetgold Official",
     template: "Veetgold Official | %s",
   },
   authors: [
     {
-      name: "Tolce Learning Hub",
-      url: "https://tolce-learning-hub.vercel.app/"
+      name: "Veetgold Official",
+      url: "https://veetgold-official.vercel.app/"
     }
   ],
   description:

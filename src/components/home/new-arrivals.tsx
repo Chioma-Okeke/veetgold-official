@@ -65,7 +65,7 @@ function NewArrivals({ sectionTitle }: { sectionTitle: string }) {
                         <div>
                             <h2 className="text-2xl lg:text-[32px] font-orbitron"><span className='text-[#CB9E2B] underline underline-offset-16'>{firstWord}</span> {rest.join(" ")}</h2>
                         </div>
-                        <Link href="/" className="underline text-xl">View All</Link>
+                        <Link href="/product-catalog" className="underline text-xl">View All</Link>
                     </div>
                     <div className='relative'>
                         <div ref={productGridRef} className='flex scrollbar overflow-x-scroll gap-4 lg:gap-6'>

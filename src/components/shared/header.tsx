@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation'
 import { Search01 } from '@/icons'
 import { useWindowWidth } from '@/hooks/use-width'
 import MobileSideBarNav from './mobile-side-bar-nav'
+import CartModal from '../product/cart-modal.'
 
 function Header() {
     const width = useWindowWidth()
@@ -38,7 +39,11 @@ function Header() {
                         </ul>
                     </nav>
                 </div>
-                <Search01 className='hidden lg:block size-6' />
+                {pathname === "/product-catalog" ? (
+                    <CartModal />
+                ) : (
+                    <Search01 className='hidden lg:block size-6' />
+                )}
                 <MobileSideBarNav />
             </div>
         </header>

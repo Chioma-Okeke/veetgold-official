@@ -60,6 +60,16 @@ function Footer() {
           </div>
         </div>
       </div>
+      <div>
+        Interested in bulk or wholesale orders?{" "}
+        <Link
+          href="https://wa.me/+16027407962?text=Hello%20Veetgold,%20I'm%20interested%20in%20bulk%20orders."
+          target="_blank"
+          className="text-green-600 font-medium hover:underline"
+        >
+          Chat with us on WhatsApp
+        </Link>
+      </div>
     </footer>
   )
 }

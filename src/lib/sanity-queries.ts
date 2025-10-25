@@ -136,12 +136,14 @@ export async function getSiteSettings() {
     return await client.fetch(query);
 }
 
-// Fetch all products with pagination
+// Fetch all products with pagination and search
 export async function getProducts(options?: {
     featured?: boolean;
     newArrival?: boolean;
     bestSelling?: boolean;
     category?: string;
+    search?: string;
+    showOutOfStock?: boolean;
     limit?: number;
     offset?: number;
 }) {
@@ -150,16 +152,31 @@ export async function getProducts(options?: {
         newArrival = false,
         bestSelling = false,
         category,
-        limit = 20,
+        search,
+        showOutOfStock = true,
+        limit = 50,
         offset = 0,
     } = options || {};
 
-    const filters = ['_type == "product"', "inStock == true"];
+    const filters = ['_type == "product"'];
+
+    // Only show in-stock products unless explicitly requested
+    if (!showOutOfStock) filters.push("inStock == true");
 
     if (featured) filters.push("featured == true");
     if (newArrival) filters.push("newArrival == true");
     if (bestSelling) filters.push("bestSelling == true");
     if (category) filters.push(`category->slug.current == "${category}"`);
+    
+    // Add search functionality
+    if (search && search.trim()) {
+        const searchTerm = search.trim().toLowerCase();
+        filters.push(`(
+            name match "*${searchTerm}*" ||
+            description match "*${searchTerm}*" ||
+            "${searchTerm}" in tags[]
+        )`);
+    }
 
     const query = `*[${filters.join(" && ")}] | order(_createdAt desc) [${offset}...${offset + limit}]{
     _id,
@@ -260,20 +277,37 @@ export async function getProductsCount(options?: {
     featured?: boolean;
     newArrival?: boolean;
     bestSelling?: boolean;
+    search?: string;
+    showOutOfStock?: boolean;
 }) {
     const {
         category,
         featured = false,
         newArrival = false,
         bestSelling = false,
+        search,
+        showOutOfStock = true,
     } = options || {};
 
-    const filters = ['_type == "product"', "inStock == true"];
+    const filters = ['_type == "product"'];
+
+    // Only show in-stock products unless explicitly requested
+    if (!showOutOfStock) filters.push("inStock == true");
 
     if (featured) filters.push("featured == true");
     if (newArrival) filters.push("newArrival == true");
     if (bestSelling) filters.push("bestSelling == true");
     if (category) filters.push(`category->slug.current == "${category}"`);
+    
+    // Add search functionality
+    if (search && search.trim()) {
+        const searchTerm = search.trim().toLowerCase();
+        filters.push(`(
+            name match "*${searchTerm}*" ||
+            description match "*${searchTerm}*" ||
+            "${searchTerm}" in tags[]
+        )`);
+    }
 
     const query = `count(*[${filters.join(" && ")}])`;
 
