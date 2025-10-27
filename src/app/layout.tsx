@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
 import BackToTop from "@/components/shared/back-to-top";
+import ScrollToTop from "@/components/shared/scroll-to-top";
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -82,8 +83,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${orbitron.variable} ${openSans.variable} antialiased text-greyscale-text-title`}
+        className={`${orbitron.variable} ${openSans.variable} antialiased text-greyscale-text-title min-h-screen`}
       >
+        <ScrollToTop />
         {children}
         <BackToTop />
       </body>
