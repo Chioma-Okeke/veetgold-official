@@ -54,7 +54,7 @@ function Footer() {
             )
           })}
         </div>
-        <div className='space-y-6 lg:hidden'>
+        <div className='space-y-4 lg:hidden'>
           <MobileFooterLinks />
           <Link href={CONTACT_DATA.INSTAGRAM} target='_blank' className='rounded-full p-1 size-10 bg-[#E9E9EA] flex items-center justify-center transition ease-in-out duration-300 hover:bg-[#FADF80] cursor-pointer'>
             <InstagramIcon className="#1D1F2C size-6" />
@@ -91,7 +91,7 @@ const MobileFooterLinks = () => {
                 Array.isArray(data) ? (
                   <ul className='flex flex-col gap-3'>
                     {data.map((link, index) => (
-                      <Link href={link.link} key={index} className='font-light'>{link.label}</Link>
+                      <Link href={link.link} key={index}>{link.label}</Link>
                     ))}
                   </ul>
                 ) : (

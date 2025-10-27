@@ -58,9 +58,9 @@ function MobileSideBarNav() {
                 ref={triggerRef}
                 aria-label="Open menu"
                 onClick={() => setOpen(true)}
-                className="p-2 rounded-md border-none ring-0 outline-none focus:outline-none focus:ring-0 focus:border-none"
+                className="rounded-md border-none ring-0 outline-none focus:outline-none focus:ring-0 focus:border-none"
             >
-                <MenuIcon className="size-8" color={pathname === '/product-catalog' || pathname === '/about-us' ? 'black' : 'currentColor'} />
+                <MenuIcon className="size-6" color={pathname === '/product-catalog' || pathname === '/about-us' ? 'black' : 'currentColor'} />
             </button>
 
             <AnimatePresence>

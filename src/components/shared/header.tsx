@@ -16,14 +16,14 @@ function Header() {
     const pathname = usePathname()
 
     return (
-        <header className={cn('z-50 w-full p-4 lg:px-[100px] lg:py-6 lg:bg-black/33 text-white', {
+        <header className={cn('z-50 w-full py-4 px-2 lg:px-[100px] lg:py-6 lg:bg-black/33 text-white', {
             'absolute top-0 left-0': pathname !== "/product-catalog"
         })}>
             <div className='flex max-lg:flex-row-reverse items-center justify-between'>
                 {pathname === "/product-catalog" && width && width < 1024 && <CartModal />}
                 <div className='flex items-center lg:gap-32 max-lg:flex-1 max-lg:justify-center'>
                     <Link href="/">
-                        <Logo variant={(pathname === "/about-us" || (pathname === "/product-catalog" && width && width < 1024)) ? "colored" : "default"} />
+                        <Logo variant={((pathname === "/about-us" || pathname === "/product-catalog") && (width && width < 1024)) ? "colored" : "default"} />
                     </Link>
                     <nav className='hidden lg:block'>
                         <ul className='flex items-center gap-8'>
@@ -43,7 +43,7 @@ function Header() {
                 {pathname === "/product-catalog" && width && width > 1024 ? (
                     <CartModal />
                 ) : (
-                    <Search01 className='hidden lg:block size-6' />
+                    <Search01 className='hidden lg:block size-6 cursor-pointer' />
                 )}
                 <MobileSideBarNav />
             </div>

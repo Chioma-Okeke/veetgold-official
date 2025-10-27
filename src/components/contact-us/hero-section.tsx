@@ -120,7 +120,7 @@ function ContactPageHero() {
                                                     stiffness: 200
                                                 }}
                                             >
-                                                <Icon />
+                                                <Icon size={36}/>
                                             </motion.div>
                                             <motion.div
                                                 initial={{ opacity: 0, y: 10 }}

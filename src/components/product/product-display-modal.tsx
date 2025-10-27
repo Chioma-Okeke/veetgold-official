@@ -75,9 +75,9 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                             {isBestSelling ? "Best Seller" : "New"}
                         </Badge>
                     )}
-                    <div className='space-y-3 w-full min-w-[150px] max-w-[232px] lg:max-w-[390px] mt-4'>
+                    <div className='space-y-3 w-full min-w-[100px] max-w-[232px] lg:max-w-[390px] mt-4'>
                         {/* {product && <ProductDisplayModal product={product} />} */}
-                        <h4 className='text-lg lg:text-xl lg:font-semibold break-words cursor-pointer'>
+                        <h4 className='lg:text-xl lg:font-semibold break-words cursor-pointer'>
                             {product?.name || "Mother and Child Lotion"}
                         </h4>
                     </div>

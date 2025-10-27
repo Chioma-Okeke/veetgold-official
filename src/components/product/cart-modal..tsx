@@ -27,7 +27,7 @@ function CartModal() {
                     <Badge className='rounded-full absolute top-0 right-0 text-xs size-3'>{cart.length}</Badge>
                 </div>
             </DialogTrigger>
-            <DialogContent className='max-md:w-[95%] mx-auto rounded-2xl'>
+            <DialogContent className='max-md:w-[95%] mx-auto rounded-2xl overflow-y-auto max-h-[90vh]'>
                 {cart.length === 0 ? <div className=' min-h-[30vh] flex flex-col items-center justify-center h-full gap-5'>
                     <div className='p-7 rounded-full bg-primary/20 w-fit'>
                         <ShoppingCart size={40} className='text-primary' />

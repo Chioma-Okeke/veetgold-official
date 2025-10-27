@@ -94,7 +94,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
     const activeFiltersCount = selectedCategories.length + (showOnlyInStock ? 1 : 0) + (showOnlyFeatured ? 1 : 0)
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen w-full">
             {/* Header */}
             <div className="bg-white/80 backdrop-blur-sm border-b border-primary">
                 <motion.div
