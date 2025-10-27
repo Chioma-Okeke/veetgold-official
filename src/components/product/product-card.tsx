@@ -44,7 +44,7 @@ function ProductCard({ product }: { product?: IProduct }) {
                 isBestSelling={!!isBestSelling}
             />
             <div className='space-y-4'>
-                <p className='lg:text-xl max-md:font-semibold'>
+                <p className='lg:text-lg xl:text-xl max-md:font-semibold'>
                     {formattedPrice}
                 </p>
                 {product && (
