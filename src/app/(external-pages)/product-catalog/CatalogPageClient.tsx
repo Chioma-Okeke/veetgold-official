@@ -341,7 +341,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                         {/* Product Grid */}
                         <motion.div
                             layout
-                            className="grid grid-cols-2 md:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 gap-y-8"
+                            className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 gap-y-8"
                         >
                             <AnimatePresence>
                                 {filteredAndSortedProducts.map((product, index) => (
