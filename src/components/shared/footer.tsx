@@ -1,9 +1,10 @@
 import React from 'react'
 import Logo from './logo'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion'
-import { FOOTER_LINKS } from '@/constants'
+import { CONTACT_DATA, FOOTER_LINKS } from '@/constants'
 import Link from 'next/link'
 import { Call, InstagramIcon, Mail02 } from '@/icons'
+import { BULK_ORDER_LINK } from '@/lib/constants'
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const nigeriaPhoneRegex = /^(?:\+234|234|0)[789][01]\d{8}$/;
@@ -25,7 +26,7 @@ function Footer() {
                     Array.isArray(data) ? (
                       <ul className='flex flex-col gap-4'>
                         {data.map((link, index) => (
-                          <Link href={link.link} key={index} className='text-xl font-light hover:text-primary transition-colors duration-300 ease-in-out'>{link.label}</Link>
+                          <Link href={link.link} key={index} className='text-xl hover:text-primary transition-colors duration-300 ease-in-out'>{link.label}</Link>
                         ))}
                       </ul>
                     ) : (
@@ -41,9 +42,9 @@ function Footer() {
                         })}
 
                         <div>
-                          <div className='rounded-full p-1 size-10 bg-[#E9E9EA] flex items-center justify-center transition ease-in-out duration-300 hover:bg-[#FADF80] cursor-pointer'>
+                          <Link href={CONTACT_DATA.INSTAGRAM} target='_blank' className='rounded-full p-1 size-10 bg-[#E9E9EA] flex items-center justify-center transition ease-in-out duration-300 hover:bg-[#FADF80] cursor-pointer'>
                             <InstagramIcon className="#1D1F2C size-6" />
-                          </div>
+                          </Link>
                         </div>
                       </div>
                     )
@@ -55,15 +56,15 @@ function Footer() {
         </div>
         <div className='space-y-6 lg:hidden'>
           <MobileFooterLinks />
-          <div className='rounded-full p-1 size-10 bg-[#E9E9EA] flex items-center justify-center transition ease-in-out duration-300 hover:bg-[#FADF80] cursor-pointer'>
+          <Link href={CONTACT_DATA.INSTAGRAM} target='_blank' className='rounded-full p-1 size-10 bg-[#E9E9EA] flex items-center justify-center transition ease-in-out duration-300 hover:bg-[#FADF80] cursor-pointer'>
             <InstagramIcon className="#1D1F2C size-6" />
-          </div>
+          </Link>
         </div>
       </div>
       <div className='max-lg:mt-3'>
         Interested in bulk or wholesale orders?{" "}
         <Link
-          href="https://wa.me/+16027407962?text=Hello%20Veetgold,%20I'm%20interested%20in%20bulk%20orders."
+          href={BULK_ORDER_LINK}
           target="_blank"
           className="text-green-600 font-medium hover:underline"
         >

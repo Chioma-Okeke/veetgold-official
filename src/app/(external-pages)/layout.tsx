@@ -10,7 +10,7 @@ function ExternalPagesLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       {/* <PageBanner bannerText='🎉  Get 10% Bonus Today' /> */}
-      <div className='relative'>
+      <div className='relative min-h-screen'>
         {<Header />}
         <main>{children}</main>
         <Footer />

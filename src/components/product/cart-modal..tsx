@@ -7,7 +7,7 @@ import { Button } from '../ui/button';
 
 function CartModal() {
     const { cart, decreaseQty, increaseQty, removeFromCart, clearCart } = useCartStore();
-    const phoneNumber = "+16027407962";
+    const phoneNumber = "2348033831759";
 
     const handleSendToWhatsApp = () => {
         if (cart.length === 0) return;

@@ -5,26 +5,10 @@ import React from 'react'
 import PaddingContainer from '../shared/padding-container'
 import MaxContainer from '../shared/max-container'
 import ContactForm from '@/forms/contact-form'
-import { Address, Email, Phone } from '@/icons'
 import { motion } from 'framer-motion'
+import { CONTACT_PAGE_DETAILS } from '@/constants'
 
-export const contactPageDetails = [
-    {
-        Icon: Address,
-        title: "Our Location",
-        description: ""
-    },
-    {
-        Icon: Phone,
-        title: "Phone Number",
-        description: "08087737997, 08033080027"
-    },
-    {
-        Icon: Email,
-        title: "Email Address",
-        description: "veetgoldofficial@gmail.com"
-    },
-]
+
 
 function ContactPageHero() {
     return (
@@ -113,7 +97,7 @@ function ContactPageHero() {
                             className='w-full max-w-[389px] space-y-6'
                         >
                             {
-                                contactPageDetails.map(({ title, Icon, description }, index) => {
+                                CONTACT_PAGE_DETAILS.map(({ title, Icon, description }, index) => {
                                     return (
                                         <motion.div
                                             key={title}
@@ -148,7 +132,13 @@ function ContactPageHero() {
                                                 className='space-y-2'
                                             >
                                                 <h3 className='lg:text-xl font-semibold'>{title}</h3>
-                                                <p className='text-sm lg:text-base text-[#FAFAFA]/80'>{description}</p>
+                                                { Array.isArray(description)? (
+                                                    description.map((line, idx) => {
+                                                        return (
+                                                            <p key={idx} className='text-sm lg:text-base text-[#FAFAFA]/80'>{line}</p>
+                                                        )
+                                                    })
+                                                ): <p className='text-sm lg:text-base text-[#FAFAFA]/80'>{description}</p>}
                                             </motion.div>
                                         </motion.div>
                                     )

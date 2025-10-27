@@ -15,6 +15,7 @@ import { IProduct, IProductCategory } from "@/types"
 import ProductCard from "@/components/product/product-card"
 import MaxContainer from "@/components/shared/max-container"
 import { getProducts } from "@/lib/sanity-queries"
+import { useSearchParams } from "next/navigation"
 
 interface CatalogPageClientProps {
     initialProducts: IProduct[]
@@ -22,9 +23,11 @@ interface CatalogPageClientProps {
 }
 
 export default function CatalogPageClient({ initialProducts, categories }: CatalogPageClientProps) {
+    const searchParams = useSearchParams()
+    const featureFilter = searchParams.get("filter")
     const [products, setProducts] = useState<IProduct[]>(initialProducts)
     const [searchQuery, setSearchQuery] = useState("")
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(featureFilter ? [featureFilter] : [])
     const [sortBy, setSortBy] = useState("featured")
     const [showOnlyInStock, setShowOnlyInStock] = useState(false)
     const [showOnlyFeatured, setShowOnlyFeatured] = useState(false)

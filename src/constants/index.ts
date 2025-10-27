@@ -1,3 +1,7 @@
+import { Address, Email } from "@/icons";
+import { WHATSAPP_NUMBER } from "@/lib/constants";
+import { Phone } from "lucide-react";
+
 export const HEADER_URLS = [
     {
         label: "Home",
@@ -34,7 +38,7 @@ export const QUICK_LINKS = [
 
 export const CONTACT_DATA = {
     EMAIL: "veetgold@example.com",
-    PHONE_NUMBER: "+2348087737997",
+    PHONE_NUMBER: `+${WHATSAPP_NUMBER}`,
     ADDRESS: [
         "Veetgold Plaza Abia gate, Trade fair complex, Lagos, Nigeria",
         "A5/44 Kano plaza, Trade fair Complex, Lagos, Nigeria",
@@ -48,3 +52,21 @@ export const FOOTER_LINKS = {
     "QUICK LINKS": QUICK_LINKS,
     "CONTACT": CONTACT_DATA,
 }
+
+export const CONTACT_PAGE_DETAILS = [
+    {
+        Icon: Address,
+        title: "Our Locations",
+        description: CONTACT_DATA.ADDRESS
+    },
+    {
+        Icon: Phone,
+        title: "Phone Number",
+        description: "08033831759"
+    },
+    {
+        Icon: Email,
+        title: "Email Address",
+        description: "veetgoldofficial@gmail.com"
+    },
+]
