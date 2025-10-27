@@ -55,7 +55,7 @@ function CollectionDisplay() {
                             <p className='w-full lg:max-w-[586px] text-justify'>{focusedContent.description}</p>
                         </motion.div>
                     </AnimatePresence>
-                    <Link className='bg-white py-3 px-4 text-[#55795E] rounded-[12px] w-full max-w-[214px]' href={"/"}>
+                    <Link className='bg-white py-3 px-4 text-[#55795E] rounded-[12px] w-full max-w-[214px]' href={"/product-catalog"}>
                         See all {activeTab} products
                     </Link>
                 </div>

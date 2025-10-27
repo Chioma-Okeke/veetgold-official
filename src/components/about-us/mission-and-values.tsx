@@ -114,7 +114,7 @@ function MissionAndValues() {
                                             scale: 1.02,
                                             transition: { duration: 0.3 }
                                         }}
-                                        className='relative w-full aspect-[559/507] max-w-[559px]'
+                                        className='relative w-full aspect-[559/507] max-w-[559px] rounded-[12px]'
                                     >
                                         <Image src={item.imgSrc} alt={item.title} fill sizes='100vw' className='object-center object-cover rounded-2xl' />
                                     </motion.div>

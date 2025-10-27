@@ -22,8 +22,8 @@ function CartModal() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className='relative w-full max-w-11'>
-                    <ShoppingBasket size={24} className='cursor-pointer hover:scale-110 transition-all ease-in-out duration-300 max-lg:text-primary' />
+                <div className='relative w-full max-w-11 cursor-pointer'>
+                    <ShoppingBasket size={24} className='hover:scale-110 transition-all ease-in-out duration-300 max-lg:text-primary' />
                     <Badge className='rounded-full absolute top-0 right-0 text-xs size-3'>{cart.length}</Badge>
                 </div>
             </DialogTrigger>
@@ -87,14 +87,14 @@ function CartModal() {
                     <div className="flex gap-3 mt-6">
                         <Button
                             onClick={handleSendToWhatsApp}
-                            className="flex-1 py-3"
+                            className="flex-1 py-3 rounded-[12px]"
                         >
                             Send Order to WhatsApp
                         </Button>
                         <Button
                             variant={"outline"}
                             onClick={clearCart}
-                            className="flex-1 py-3"
+                            className="flex-1 py-3 rounded-[12px]"
                         >
                             Clear Cart
                         </Button>

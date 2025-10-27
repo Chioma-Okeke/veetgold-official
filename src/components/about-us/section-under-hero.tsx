@@ -64,7 +64,7 @@ function SectionUnderHero() {
                         viewport={{ once: true, amount: 0.3 }}
                         className='relative overflow-hidden w-full aspect-[541/814] max-w-[541px] hidden lg:block'
                     >
-                        <Image src={"/model2.png"} alt='Model Image' fill sizes='100vw' className='object-cover object-center' />
+                        <Image src={"/model2.png"} alt='Model Image' fill sizes='100vw' className='object-cover object-center rounded-[12px]' />
                     </motion.div>
                     <motion.div
                         variants={containerVariants}
@@ -88,14 +88,14 @@ function SectionUnderHero() {
                                     transition={{ duration: 0.3 }}
                                     className='relative w-full aspect-[315/220] max-w-[315px]'
                                 >
-                                    <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center' />
+                                    <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
                                 </motion.div>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
                                     className='relative w-full aspect-[315/220] max-w-[315px]'
                                 >
-                                    <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center' />
+                                    <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
                                 </motion.div>
                             </motion.div>
                             <motion.div variants={itemVariants}>

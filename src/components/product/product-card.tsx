@@ -1,18 +1,17 @@
 "use client"
 
-import Image from 'next/image'
-import React from 'react'
-import { Badge } from '../ui/badge'
+import React, { useState } from 'react'
 import { IProduct } from '@/types'
 import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
 import { Button } from '../ui/button'
 import { useCartStore } from '@/store/useCartStore'
-import ProductDisplayModal from './prroduct-display-modal'
+import ProductDisplayModal from './product-display-modal'
+import { cn } from '@/lib/utils'
+import { usePathname } from 'next/navigation'
 
 function ProductCard({ product }: { product?: IProduct }) {
-    const pathname = usePathname()
     const addToCart = useCartStore((state) => state.addToCart)
+    const [isShimmering, setIsShimmering] = useState(false)
 
     const imageUrl = product?.images?.[0]?.asset?.url || "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/cream_y167ne.webp"
 
@@ -21,53 +20,97 @@ function ProductCard({ product }: { product?: IProduct }) {
     const isNewArrival = product?.newArrival
     const isBestSelling = product?.bestSelling
 
+    const pathname = usePathname()
+
+    const handleAddToCart = () => {
+        if (!product) return
+
+        setIsShimmering(true)
+        addToCart(product)
+
+        setTimeout(() => {
+            setIsShimmering(false)
+        }, 800)
+    }
+
     return (
-        <div className='w-full h-full flex flex-col justify-between max-w-[232px] lg:max-w-[398px] lg:py-6 space-y-6 rounded-3xl'>
-            <div className='relative'>
-                <div className='overflow-hidden w-full aspect-[364/455] max-w-[364px] rounded-2xl'>
-                    <motion.div
-                        initial={pathname === "/product-catalog" ? { filter: "blur(20px)", opacity: 0.7 } : {}}
-                        whileInView={pathname === "/product-catalog" ? { filter: "blur(0px)", opacity: 1 } : {}}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="relative w-full h-full rounded-xl"
-                    >
-                        <Image
-                            loading='lazy'
-                            src={imageUrl}
-                            fill
-                            sizes='100vw'
-                            className="object-cover object-center"
-                            alt={product?.name || "Product image"}
-                        />
-                        {pathname === "/" && <motion.div
-                            initial={{ y: "0%" }}
-                            whileInView={{ y: "-100%" }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.9, ease: "easeOut" }}
-                            className="absolute inset-0 bg-white origin-bottom"
-                        />}
-                    </motion.div>
-                </div>
-                {/* Show badge based on product flags */}
-                {(isNewArrival || isBestSelling) && (
-                    <Badge className="absolute top-1.5 right-1.5 lg:right-2 lg:top-4 bg-[#4C8E2C] py-1 px-2 lg:py-2.5 lg:px-4 text-[8px] lg:text-lg h-fit rounded-[100px]">
-                        {isBestSelling ? "Best Seller" : "New"}
-                    </Badge>
-                )}
-            </div>
-            <div className='space-y-3 w-full min-w-[150px] max-w-[232px] lg:max-w-[390px]'>
-                {product && <ProductDisplayModal product={product} />}
-                {/* <h4 className='text-lg lg:text-xl lg:font-semibold break-words'>
-                    {product?.name || "Mother and Child Lotion"}
-                </h4> */}
+        <div className={cn('w-full h-full flex flex-col justify-between max-w-[232px] lg:max-w-[398px] lg:py-6 space-y-4 rounded-3xl transition-all duration-300 ease-in-out px-2', {
+            'hover:shadow-lg': pathname === '/product-catalog',
+        })}>
+            <ProductDisplayModal
+                product={product!}
+                imageUrl={imageUrl}
+                isNewArrival={!!isNewArrival}
+                isBestSelling={!!isBestSelling}
+            />
+            <div className='space-y-4'>
                 <p className='text-lg lg:text-xl max-md:font-semibold'>
                     {formattedPrice}
                 </p>
+                {product && (
+                    <motion.div
+                        className="relative overflow-hidden"
+                        animate={isShimmering ? {
+                            boxShadow: [
+                                "0 0 0 0 rgba(76, 142, 44, 0.4)",
+                                "0 0 0 10px rgba(76, 142, 44, 0)",
+                                "0 0 0 0 rgba(76, 142, 44, 0)"
+                            ]
+                        } : {}}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <Button
+                            onClick={handleAddToCart}
+                            className={`w-full py-3 rounded-[12px] relative overflow-hidden ${isShimmering ? 'bg-green-600' : ''
+                                }`}
+                            disabled={isShimmering}
+                        >
+                            <span className={isShimmering ? 'text-transparent' : ''}>
+                                Add to Cart
+                            </span>
+
+                            {isShimmering && (
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                                    initial={{ x: '-100%' }}
+                                    animate={{ x: '100%' }}
+                                    transition={{
+                                        duration: 0.6,
+                                        ease: "easeInOut",
+                                        repeat: 1
+                                    }}
+                                />
+                            )}
+
+                            {isShimmering && (
+                                <motion.div
+                                    className="absolute inset-0 flex items-center justify-center"
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ delay: 0.3, duration: 0.3 }}
+                                >
+                                    <motion.svg
+                                        className="w-5 h-5 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        initial={{ pathLength: 0 }}
+                                        animate={{ pathLength: 1 }}
+                                        transition={{ delay: 0.4, duration: 0.3 }}
+                                    >
+                                        <motion.path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M5 13l4 4L19 7"
+                                        />
+                                    </motion.svg>
+                                </motion.div>
+                            )}
+                        </Button>
+                    </motion.div>
+                )}
             </div>
-            {product && <Button onClick={() => addToCart(product)} className='w-full'>
-                Add to Cart
-            </Button>}
         </div>
     )
 }

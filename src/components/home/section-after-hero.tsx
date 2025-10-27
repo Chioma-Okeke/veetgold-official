@@ -30,7 +30,7 @@ function SectionAfterHero() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className='relative w-full h-[598px] lg:h-[815px]'>
-                        <Image alt="African Queen" src="https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/african-queen_panxkr.webp" fill sizes="100vw" className='object-cover object-center' />
+                        <Image alt="African Queen" src="https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/african-queen_panxkr.webp" fill sizes="100vw" className='object-cover object-center rounded-[12px]' />
                     </motion.div>
                 </MaxContainer>
             </PaddingContainer>

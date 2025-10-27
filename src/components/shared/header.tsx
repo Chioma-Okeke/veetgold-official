@@ -20,6 +20,7 @@ function Header() {
             'absolute top-0 left-0': pathname !== "/product-catalog"
         })}>
             <div className='flex max-lg:flex-row-reverse items-center justify-between'>
+                {pathname === "/product-catalog" && width && width < 1024 && <CartModal />}
                 <div className='flex items-center lg:gap-32 max-lg:flex-1 max-lg:justify-center'>
                     <Link href="/">
                         <Logo variant={(pathname === "/about-us" || (pathname === "/product-catalog" && width && width < 1024)) ? "colored" : "default"} />
@@ -39,7 +40,7 @@ function Header() {
                         </ul>
                     </nav>
                 </div>
-                {pathname === "/product-catalog" ? (
+                {pathname === "/product-catalog" && width && width > 1024 ? (
                     <CartModal />
                 ) : (
                     <Search01 className='hidden lg:block size-6' />

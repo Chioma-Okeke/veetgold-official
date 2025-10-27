@@ -15,7 +15,6 @@ function MobileSideBarNav() {
     const triggerRef = useRef<HTMLButtonElement | null>(null)
     const panelRef = useRef<HTMLDivElement | null>(null)
 
-    // lock body scroll when open
     useEffect(() => {
         if (open) {
             const originalStyle = window.getComputedStyle(document.body).overflow
@@ -26,7 +25,6 @@ function MobileSideBarNav() {
         }
     }, [open])
 
-    // close on ESC
     useEffect(() => {
         function onKey(e: KeyboardEvent) {
             if (e.key === 'Escape') setOpen(false)
@@ -35,12 +33,10 @@ function MobileSideBarNav() {
         return () => window.removeEventListener('keydown', onKey)
     }, [open])
 
-    // return focus to trigger when closed
     useEffect(() => {
         if (!open) triggerRef.current?.focus()
     }, [open])
 
-    // animate variants
     const backdrop = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 },

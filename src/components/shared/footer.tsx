@@ -60,7 +60,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div>
+      <div className='max-lg:mt-3'>
         Interested in bulk or wholesale orders?{" "}
         <Link
           href="https://wa.me/+16027407962?text=Hello%20Veetgold,%20I'm%20interested%20in%20bulk%20orders."
