@@ -82,20 +82,20 @@ function SectionUnderHero() {
                                 <h3 className='font-semibold text-lg lg:text-2xl'>Uncompromised Quality Ingredients</h3>
                                 <p className='lg:text-xl'>No fillers, no fluff, just potent, skin-loving ingredients that work.</p>
                             </motion.div>
-                            <motion.div variants={itemVariants} className='flex items-center justify-between gap-2'>
+                            <motion.div variants={itemVariants} className='flex items-center justify-between'>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
                                     className='relative w-full aspect-[315/220] max-w-[315px]'
                                 >
-                                    <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
+                                    <Image src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1762971865/Glycolic_scrub_xjicj3.jpg"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
                                 </motion.div>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
                                     className='relative w-full aspect-[315/220] max-w-[315px]'
                                 >
-                                    <Image src={"/glycolic-acid.png"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
+                                    <Image src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1762971764/Turmeric_scrub_toqzco.jpg"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
                                 </motion.div>
                             </motion.div>
                             <motion.div variants={itemVariants}>

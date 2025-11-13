@@ -8,9 +8,9 @@ import { motion } from 'framer-motion'
 
 function AboutHero() {
     return (
-        <section className='pt-28 lg:pt-48 pb-20'>
+        <section className='pt-28 lg:pt-48 pb-10'>
             <PaddingContainer>
-                <MaxContainer>
+                <MaxContainer className='space-y-5'>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -25,10 +25,10 @@ function AboutHero() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className='relative w-full aspect-[1240/737] max-w-[1240px]'
+                        className='relative w-full aspect-[1000/737] max-w-[1000px] mx-auto'
                     >
                         <Image
-                            src={"/image.png"}
+                            src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1762958086/WhatsApp_Image_2025-11-12_at_03.27.22_17b2fa77_kmydvr.jpg"}
                             alt='Model Image'
                             fill
                             sizes="100vw"

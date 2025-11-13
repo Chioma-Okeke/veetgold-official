@@ -47,7 +47,6 @@ const products = defineType({
             name: "price",
             title: "Current Price (₦)",
             type: "number",
-            validation: (Rule) => Rule.required().positive(),
         }),
         defineField({
             name: "originalPrice",
@@ -62,14 +61,13 @@ const products = defineType({
             title: "Product Description",
             type: "text",
             rows: 4,
-            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: "category",
             title: "Product Category",
-            type: "reference",
-            to: [{ type: "category" }],
-            validation: (Rule) => Rule.required(),
+            type: "array",
+            of: [{ type: "reference", to: [{ type: "category" }] }],
+            validation: (Rule) => Rule.required().min(1),
         }),
         defineField({
             name: "tags",

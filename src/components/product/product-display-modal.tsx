@@ -42,7 +42,7 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
         }}>
             <DialogTrigger className={cn('w-full text-start h-full cursor-pointer', {
                 'pointer-events-none': pathname !== '/product-catalog',
-                })}>
+            })}>
                 <div className='relative'>
                     <div className='overflow-hidden w-full aspect-[364/455] max-w-[364px] rounded-2xl'>
                         <motion.div
@@ -57,7 +57,7 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                                 src={imageUrl}
                                 fill
                                 sizes='100vw'
-                                className="object-cover object-center"
+                                className="object-cover object-center rounded-[12px]"
                                 alt={product?.name || "Product image"}
                             />
                             {pathname === "/" && <motion.div
@@ -76,7 +76,6 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                         </Badge>
                     )}
                     <div className='space-y-3 w-full min-w-[100px] max-w-[232px] lg:max-w-[390px] mt-4'>
-                        {/* {product && <ProductDisplayModal product={product} />} */}
                         <h4 className='lg:text-lg xl:text-xl lg:font-semibold break-words cursor-pointer'>
                             {product?.name || "Mother and Child Lotion"}
                         </h4>
@@ -84,7 +83,7 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                 </div>
             </DialogTrigger>
             <DialogContent className='max-w-3xl flex max-lg:flex-col gap-5 max-md:w-[95%] mx-auto rounded-2xl min-h-[60vh] overflow-y-auto max-h-[90vh]'>
-                <div className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto">
+                {product?.images?.length > 0 && <div className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto">
                     <Image
                         src={product?.images[0].asset.url}
                         alt={product?.name}
@@ -92,7 +91,7 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                         sizes='100vw'
                         className="object-center object-contain rounded-[12px]"
                     />
-                </div>
+                </div>}
 
                 <div className="py-5 flex flex-col justify-between">
                     <div>
@@ -103,9 +102,9 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <p className="text-xl font-semibold text-green-700 mb-4">
+                        {product?.price && <p className="text-xl font-semibold text-green-700 mb-4">
                             ₦{product?.price.toLocaleString()}
-                        </p>
+                        </p>}
                         <motion.div
                             className="relative overflow-hidden"
                             animate={isShimmering ? {

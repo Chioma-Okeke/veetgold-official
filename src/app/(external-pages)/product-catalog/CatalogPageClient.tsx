@@ -15,7 +15,7 @@ import { IProduct, IProductCategory } from "@/types"
 import ProductCard from "@/components/product/product-card"
 import MaxContainer from "@/components/shared/max-container"
 import { getProducts } from "@/lib/sanity-queries"
-import { useSearchParams } from "next/navigation"
+import { useSearchParams, useRouter } from "next/navigation"
 
 interface CatalogPageClientProps {
     initialProducts: IProduct[]
@@ -24,6 +24,7 @@ interface CatalogPageClientProps {
 
 export default function CatalogPageClient({ initialProducts, categories }: CatalogPageClientProps) {
     const searchParams = useSearchParams()
+    const router = useRouter()
     const featureFilter = searchParams.get("filter")
     const [products, setProducts] = useState<IProduct[]>(initialProducts)
     const [searchQuery, setSearchQuery] = useState("")
@@ -32,15 +33,21 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
     const [showOnlyInStock, setShowOnlyInStock] = useState(false)
     const [showOnlyFeatured, setShowOnlyFeatured] = useState(false)
     const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        if (featureFilter) {
+            setSelectedCategories([featureFilter])
+            const params = new URLSearchParams(searchParams.toString())
+            params.delete("filter")
+            router.replace(`?${params.toString()}`, { scroll: false })
+        }
+    }, [featureFilter, searchParams, router])
 
-    // Fetch products when filters change
     useEffect(() => {
         const fetchFilteredProducts = async () => {
             setLoading(true)
             try {
                 const filteredProducts = await getProducts({
                     search: searchQuery || undefined,
-                    category: selectedCategories.length > 0 ? selectedCategories[0] : undefined, // For simplicity, using first category
                     featured: showOnlyFeatured || undefined,
                     showOutOfStock: !showOnlyInStock,
                 })
@@ -53,16 +60,18 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
         }
 
         fetchFilteredProducts()
-    }, [searchQuery, selectedCategories, showOnlyInStock, showOnlyFeatured])
+    }, [searchQuery, showOnlyInStock, showOnlyFeatured])
 
     const filteredAndSortedProducts = useMemo(() => {
         let filtered = [...products]
 
-        // Additional client-side filtering for multiple categories
-        if (selectedCategories.length > 1) {
-            filtered = filtered.filter((product) =>
-                selectedCategories.includes(product.category.slug.current)
-            )
+        if (selectedCategories.length > 0) {
+            filtered = filtered.filter((product) => {
+                if (!product.category || product.category.length === 0) {
+                    return false
+                }
+                return product.category.some((cat) => selectedCategories.includes(cat.slug.current))
+            })
         }
 
         // Sort products

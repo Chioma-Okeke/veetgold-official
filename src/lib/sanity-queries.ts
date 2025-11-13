@@ -160,13 +160,12 @@ export async function getProducts(options?: {
 
     const filters = ['_type == "product"'];
 
-    // Only show in-stock products unless explicitly requested
     if (!showOutOfStock) filters.push("inStock == true");
 
     if (featured) filters.push("featured == true");
     if (newArrival) filters.push("newArrival == true");
     if (bestSelling) filters.push("bestSelling == true");
-    if (category) filters.push(`category->slug.current == "${category}"`);
+    if (category) filters.push(`"${category}" in category[]->slug.current`);
     
     // Add search functionality
     if (search && search.trim()) {
@@ -185,7 +184,7 @@ export async function getProducts(options?: {
     price,
     originalPrice,
     description,
-    category->{
+    "category": category[]->{
       _id,
       title,
       slug
@@ -224,7 +223,7 @@ export async function getProduct(slug: string) {
     price,
     originalPrice,
     description,
-    category->{
+    "category": category[]->{
       _id,
       title,
       slug
@@ -297,7 +296,7 @@ export async function getProductsCount(options?: {
     if (featured) filters.push("featured == true");
     if (newArrival) filters.push("newArrival == true");
     if (bestSelling) filters.push("bestSelling == true");
-    if (category) filters.push(`category->slug.current == "${category}"`);
+    if (category) filters.push(`"${category}" in category[]->slug.current`);
     
     // Add search functionality
     if (search && search.trim()) {

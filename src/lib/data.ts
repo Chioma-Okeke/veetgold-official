@@ -1,15 +1,15 @@
 export const heroImageData = [
     {
-        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751124562/Eye_jqoqfv.webp",
-        alt: "Model Eye",
+        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg",
+        alt: "Company Logo",
+    },
+    {
+        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1761547973/face-serum-skincare-black-woman-600nw-2215472183_bmsskv.webp",
+        alt: "Woman applying facial serum",
     },
     {
         imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
         alt: "Kojic Acid Cream",
-    },
-    {
-        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/logo_ae8tzv.webp",
-        alt: "Company Logo",
     },
 ];
 
@@ -75,9 +75,9 @@ export const featuredCollections = {
         description:
             "Experience skincare that goes beyond the surface. Our facial collection is crafted to cleanse, nourish, and renew your skin; restoring its natural radiance with every touch. From gentle exfoliants to deeply hydrating treatments, each formula is infused with nature’s best ingredients to keep your skin refreshed, balanced, and luminous. Because your glow deserves the very best care, every day.",
         imgSrc: [
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/logo_ae8tzv.webp",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751124562/Eye_jqoqfv.webp",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762958086/WhatsApp_Image_2025-11-12_at_03.27.22_17b2fa77_kmydvr.jpg",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763007710/alpha_arbutin_face_cream_binfp9.jpg",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763007328/rice_and_milk_face_soap_wmp1of.jpg",
         ],
         CTA: "Discover your glow routine",
     },
@@ -132,4 +132,10 @@ export const missionAndValues = [
             "To craft honest, high-performing beauty products that nourish skin and confidence, using intentional ingredients, and ethical practices. We exist to redefine beauty through authenticity, transparency, and care in every jar and bottle.",
         imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1761547973/face-serum-skincare-black-woman-600nw-2215472183_bmsskv.webp",
     },
+];
+
+export const parallaxScrollImages = [
+    "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
+    "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/logo_ae8tzv.webp",
+    "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751124562/Eye_jqoqfv.webp",
 ];

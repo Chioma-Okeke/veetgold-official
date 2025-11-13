@@ -27,13 +27,7 @@ export interface IProduct {
     price: number;
     originalPrice?: number; // optional, since not all items have it
     description: string;
-    category: {
-        _id: string;
-        title: string;
-        slug: {
-            current: string;
-        };
-    };
+    category: IProductCategory[];
     tags: string[];
     images: {
         asset: {

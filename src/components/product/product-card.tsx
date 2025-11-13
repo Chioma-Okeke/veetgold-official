@@ -13,7 +13,7 @@ function ProductCard({ product }: { product?: IProduct }) {
     const addToCart = useCartStore((state) => state.addToCart)
     const [isShimmering, setIsShimmering] = useState(false)
 
-    const imageUrl = product?.images?.[0]?.asset?.url || "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/cream_y167ne.webp"
+    const imageUrl = product?.images?.[0]?.asset?.url || "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg"
 
     const formattedPrice = product?.price ? `$${product.price.toFixed(2)}` : "$10.12"
 
@@ -34,7 +34,7 @@ function ProductCard({ product }: { product?: IProduct }) {
     }
 
     return (
-        <div className={cn('w-full h-full flex flex-col justify-between max-w-[232px] lg:max-w-[398px] lg:py-6 space-y-4 rounded-3xl transition-all duration-300 ease-in-out px-2', {
+        <div className={cn('w-full h-full flex flex-col justify-between max-w-[232px] lg:max-w-[398px] py-3 lg:py-6 space-y-4 rounded-3xl transition-all duration-300 ease-in-out px-2', {
             'hover:shadow-lg': pathname === '/product-catalog',
         })}>
             <ProductDisplayModal
