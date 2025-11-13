@@ -32,12 +32,10 @@ function MissionAndValues() {
                                         variants={{
                                             hidden: {
                                                 opacity: 0,
-                                                x: isOdd ? 60 : -60,
                                                 y: 40
                                             },
                                             visible: {
                                                 opacity: 1,
-                                                x: 0,
                                                 y: 0,
                                                 transition: {
                                                     duration: 0.8,
@@ -94,13 +92,11 @@ function MissionAndValues() {
                                         variants={{
                                             hidden: {
                                                 opacity: 0,
-                                                x: isOdd ? -80 : 80,
-                                                y: -20,
-                                                scale: 0.9
+                                                y: 40,
+                                                scale: 0.95
                                             },
                                             visible: {
                                                 opacity: 1,
-                                                x: 0,
                                                 y: 0,
                                                 scale: 1,
                                                 transition: {

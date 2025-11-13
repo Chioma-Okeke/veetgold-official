@@ -59,23 +59,34 @@ export const TESTIMONIALS = [
 ];
 
 export const featuredCollections = {
-    fragrances: {
-        title: "Scent That Speaks You",
+    // fragrances: {
+    //     title: "Scent That Speaks You",
+    //     description:
+    //         "Every scent tells a story, yours begins here. Our fragrances are more than perfumes; they’re emotions bottled with care. From soft florals that whisper confidence to deep woody notes that command attention, each fragrance is crafted to become your invisible signature. Let every spritz awaken memories, moods, and moments that are uniquely yours",
+    //     imgSrc: [
+    //         "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
+    //         "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/logo_ae8tzv.webp",
+    //         "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751124562/Eye_jqoqfv.webp",
+    //     ],
+    //     CTA: "Discover your signature scent",
+    // },
+    scrubs: {
+        title: "Exfoliation That Renews Your Glow",
         description:
-            "Every scent tells a story, yours begins here. Our fragrances are more than perfumes; they’re emotions bottled with care. From soft florals that whisper confidence to deep woody notes that command attention, each fragrance is crafted to become your invisible signature. Let every spritz awaken memories, moods, and moments that are uniquely yours",
+            "Uncover smoother, brighter skin with our invigorating body scrub collection. Each blend is crafted to gently buff away dullness, unclog pores, and rejuvenate your natural radiance. From sugar scrubs enriched with nourishing oils to exfoliators infused with botanicals, every formula polishes and refreshes your skin for a silky-soft finish. Reveal the glow beneath and indulge in a spa-like experience with every scrub.",
         imgSrc: [
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/logo_ae8tzv.webp",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751124562/Eye_jqoqfv.webp",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763058188/Generated_Image_November_13_2025_-_11_21AM_ixkeps.png",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763058878/Skin_Tag_Scrub_cwgkyk.png",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763058701/Turmeric_scrub_f9urfp.jpg",
         ],
-        CTA: "Discover your signature scent",
+        CTA: "Reveal your smoothest skin",
     },
-    facials: {
+    "face-soaps": {
         title: "Glow That Speaks Confidence",
         description:
             "Experience skincare that goes beyond the surface. Our facial collection is crafted to cleanse, nourish, and renew your skin; restoring its natural radiance with every touch. From gentle exfoliants to deeply hydrating treatments, each formula is infused with nature’s best ingredients to keep your skin refreshed, balanced, and luminous. Because your glow deserves the very best care, every day.",
         imgSrc: [
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762958086/WhatsApp_Image_2025-11-12_at_03.27.22_17b2fa77_kmydvr.jpg",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763059889/Glycolic_fash_wash_dzi2vy.png",
             "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763007710/alpha_arbutin_face_cream_binfp9.jpg",
             "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763007328/rice_and_milk_face_soap_wmp1of.jpg",
         ],
@@ -86,9 +97,9 @@ export const featuredCollections = {
         description:
             "Bold. Effortless. You. Our cosmetics collection is where creativity meets care. From richly pigmented lips to flawlessly blending foundations, every formula is designed to enhance, not mask, your beauty. We believe in cosmetics that let you play, express, and shine on your own terms; because makeup should feel like art on your skin. Step into color, confidence, and the limitless you.",
         imgSrc: [
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751229984/logo_ae8tzv.webp",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751124562/Eye_jqoqfv.webp",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763056801/Generated_Image_November_13_2025_-_10_56AM_meggbl.png",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763057466/Generated_Image_November_13_2025_-_11_09AM_tvl9jc.png",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763057786/Generated_Image_November_13_2025_-_11_15AM_sjw3es.png",
         ],
         CTA: "Shop your must-have looks",
     },

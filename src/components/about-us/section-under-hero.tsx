@@ -88,14 +88,14 @@ function SectionUnderHero() {
                                     transition={{ duration: 0.3 }}
                                     className='relative w-full aspect-[315/220] max-w-[315px]'
                                 >
-                                    <Image src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1762971865/Glycolic_scrub_xjicj3.jpg"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
+                                    <Image src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1763058188/Generated_Image_November_13_2025_-_11_21AM_ixkeps.png"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
                                 </motion.div>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
                                     className='relative w-full aspect-[315/220] max-w-[315px]'
                                 >
-                                    <Image src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1762971764/Turmeric_scrub_toqzco.jpg"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
+                                    <Image src={"https://res.cloudinary.com/djrp3aaq9/image/upload/v1763058701/Turmeric_scrub_f9urfp.jpg"} fill sizes='100vw' alt='product image' className='object-cover object-center rounded-[12px]' />
                                 </motion.div>
                             </motion.div>
                             <motion.div variants={itemVariants}>
