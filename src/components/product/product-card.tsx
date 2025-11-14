@@ -15,8 +15,6 @@ function ProductCard({ product }: { product?: IProduct }) {
 
     const imageUrl = product?.images?.[0]?.asset?.url || "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg"
 
-    const formattedPrice = product?.price ? `$${product.price.toFixed(2)}` : "$10.12"
-
     const isNewArrival = product?.newArrival
     const isBestSelling = product?.bestSelling
 
@@ -44,9 +42,9 @@ function ProductCard({ product }: { product?: IProduct }) {
                 isBestSelling={!!isBestSelling}
             />
             <div className='space-y-4'>
-                <p className='lg:text-lg xl:text-xl max-md:font-semibold'>
-                    {formattedPrice}
-                </p>
+                {product && product.price && <p className='lg:text-lg xl:text-xl max-md:font-semibold'>
+                    ${product.price.toFixed(2)}
+                </p>}
                 {product && (
                     <motion.div
                         className="relative overflow-hidden"

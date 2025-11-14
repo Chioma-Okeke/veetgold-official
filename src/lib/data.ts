@@ -1,15 +1,15 @@
 export const heroImageData = [
     {
+        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763057466/Generated_Image_November_13_2025_-_11_09AM_tvl9jc.png",
+        alt: "Shattered Eye shadow Palette",
+    },
+    {
         imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg",
         alt: "Company Logo",
     },
     {
-        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1761547973/face-serum-skincare-black-woman-600nw-2215472183_bmsskv.webp",
-        alt: "Woman applying facial serum",
-    },
-    {
-        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1751125516/product-image-hero_svohfp.webp",
-        alt: "Kojic Acid Cream",
+        imgSrc: "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763093178/ladies-hero_ig7yxp.png",
+        alt: "Female Models",
     },
 ];
 
@@ -88,7 +88,7 @@ export const featuredCollections = {
         imgSrc: [
             "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763059889/Glycolic_fash_wash_dzi2vy.png",
             "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763007710/alpha_arbutin_face_cream_binfp9.jpg",
-            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763007328/rice_and_milk_face_soap_wmp1of.jpg",
+            "https://res.cloudinary.com/djrp3aaq9/image/upload/v1763061590/Rice_and_milk_face_soap_njg9nu.png",
         ],
         CTA: "Discover your glow routine",
     },

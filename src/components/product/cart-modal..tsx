@@ -47,7 +47,7 @@ function CartModal() {
                                 <div>
                                     <p className="font-medium">{item.name}</p>
                                     <p className="text-sm text-gray-600">
-                                        ₦{item.price.toLocaleString()} x {item.quantity}
+                                        ₦{item.price?.toLocaleString()} x {item.quantity}
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-3">

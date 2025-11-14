@@ -12,7 +12,7 @@ export const TestimonialsBanner = () => {
                         <div
                             key={index}
                             className={cn("card flex-shrink-0 w-full max-w-[343px] lg:max-w-[530px] p-7.5 gap-5 rounded-[28px] bg-[#FAFAFA] flex flex-col justify-between", {
-                                "mr-8": index === 3
+                                "mr-8": testimonial.id === TESTIMONIALS.length
                             })}
                         >
                             <div className="flex flex-col gap-5">
@@ -39,7 +39,7 @@ export const TestimonialsBanner = () => {
                         <div
                             key={index}
                             className={cn("card flex-shrink-0 w-full max-w-[343px] lg:max-w-[530px] p-7.5 gap-5 rounded-[28px] bg-[#FAFAFA] flex flex-col justify-between", {
-                                "mr-8": index === 3
+                                "mr-8": testimonial.id === TESTIMONIALS.length
                             })}
                         >
                             <div className="flex flex-col gap-5">

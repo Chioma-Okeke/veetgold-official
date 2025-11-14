@@ -244,7 +244,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="flex-1 min-w-0">
+                        className="flex-1 min-w-0 min-h-screen">
                         {/* Results Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
                             <motion.p
@@ -255,7 +255,14 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                                 className="text-sm sm:text-base"
                             >
                                 {loading ? (
-                                    <span>Loading...</span>
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        className="text-center py-12"
+                                    >
+                                        <LoaderPinwheel className="mx-auto mb-4 h-10 w-10 text-primary animate-spin" />
+                                        <p className="text-lg">Loading products...</p>
+                                    </motion.div>
                                 ) : (
                                     <>
                                         <motion.span

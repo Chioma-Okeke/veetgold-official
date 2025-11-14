@@ -82,7 +82,7 @@ function SectionUnderHero() {
                                 <h3 className='font-semibold text-lg lg:text-2xl'>Uncompromised Quality Ingredients</h3>
                                 <p className='lg:text-xl'>No fillers, no fluff, just potent, skin-loving ingredients that work.</p>
                             </motion.div>
-                            <motion.div variants={itemVariants} className='flex items-center justify-between'>
+                            <motion.div variants={itemVariants} className='flex items-center justify-between gap-2'>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
