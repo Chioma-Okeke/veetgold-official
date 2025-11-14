@@ -174,8 +174,8 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                                 <SelectContent>
                                     <SelectItem value="featured">Featured</SelectItem>
                                     <SelectItem value="name">Name A-Z</SelectItem>
-                                    <SelectItem value="price-low">Price: Low to High</SelectItem>
-                                    <SelectItem value="price-high">Price: High to Low</SelectItem>
+                                    {/* <SelectItem value="price-low">Price: Low to High</SelectItem>
+                                    <SelectItem value="price-high">Price: High to Low</SelectItem> */}
                                 </SelectContent>
                             </Select>
                         </div>
@@ -209,8 +209,8 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                             <SelectContent>
                                 <SelectItem value="featured">Featured</SelectItem>
                                 <SelectItem value="name">Name A-Z</SelectItem>
-                                <SelectItem value="price-low">Price: Low to High</SelectItem>
-                                <SelectItem value="price-high">Price: High to Low</SelectItem>
+                                {/* <SelectItem value="price-low">Price: Low to High</SelectItem>
+                                <SelectItem value="price-high">Price: High to Low</SelectItem> */}
                             </SelectContent>
                         </Select>
                     </div>

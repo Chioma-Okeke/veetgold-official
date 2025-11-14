@@ -75,16 +75,16 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                     </div>
                 </div>
             </DialogTrigger>
-            <DialogContent className='max-w-3xl flex max-lg:flex-col gap-5 max-md:w-[95%] mx-auto rounded-2xl min-h-[60vh] overflow-y-auto max-h-[90vh]'>
-                {product?.images?.length > 0 && <div className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto">
+            <DialogContent className='max-w-3xl flex max-lg:flex-col gap-5 max-md:w-[95%] mx-auto rounded-[12px] min-h-[60vh] overflow-y-auto max-h-[90vh]'>
+                <div className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto">
                     <Image
-                        src={product?.images[0].asset.url}
+                        src={product?.images?.length > 0 ? product?.images[0]?.asset.url : imageUrl}
                         alt={product?.name}
                         fill
                         sizes='100vw'
                         className="object-center object-contain rounded-[12px]"
                     />
-                </div>}
+                </div>
 
                 <div className="py-5 flex flex-col justify-between">
                     <div>
