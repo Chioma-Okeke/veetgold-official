@@ -12,11 +12,13 @@ function CartModal() {
     const handleSendToWhatsApp = () => {
         if (cart.length === 0) return;
 
-        const itemsList = cart.map((item) => `- ${item.name} (₦${item.price.toLocaleString()} x ${item.quantity})`).join('%0A');
-        const total = cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
-        const message = `Hello Veetgold,%0A%0AI'd like to order:%0A${itemsList}%0A%0ATotal: ₦${total.toLocaleString()}%0A%0APlease confirm availability.`;
+        const itemsList = cart.map((item) => `- ${item.name} | ${item.quantity} pieces`).join('%0A%0A');
+        // const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const message = `Hello Veetgold,%0A%0AI'd like to order:%0A${itemsList}%0A%0APlease confirm availability.`;
         const url = `https://wa.me/${phoneNumber}?text=${message}`;
-        window.open(url, "_blank");
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        window.open(url, isMobile ? "_self" : "_blank");
+        clearCart();
     }
 
     return (
@@ -46,8 +48,11 @@ function CartModal() {
                             >
                                 <div>
                                     <p className="font-medium">{item.name}</p>
-                                    <p className="text-sm text-gray-600">
+                                    {/* <p className="text-sm text-gray-600">
                                         ₦{item.price?.toLocaleString()} x {item.quantity}
+                                    </p> */}
+                                    <p className="text-sm text-gray-600">
+                                        Quantity: {item.quantity}
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-3">
@@ -74,7 +79,7 @@ function CartModal() {
                         ))}
                     </ul>
 
-                    <div className="mt-6 flex justify-between font-semibold">
+                    {/* <div className="mt-6 flex justify-between font-semibold">
                         <p>Total</p>
                         <p>
                             ₦
@@ -82,7 +87,7 @@ function CartModal() {
                                 .reduce((sum, i) => sum + i.price * (i.quantity || 1), 0)
                                 .toLocaleString()}
                         </p>
-                    </div>
+                    </div> */}
 
                     <div className="flex gap-3 mt-6">
                         <Button

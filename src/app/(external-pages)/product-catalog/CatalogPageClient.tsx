@@ -33,6 +33,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
     const [showOnlyInStock, setShowOnlyInStock] = useState(false)
     const [showOnlyFeatured, setShowOnlyFeatured] = useState(false)
     const [loading, setLoading] = useState(false)
+    
     useEffect(() => {
         if (featureFilter) {
             setSelectedCategories([featureFilter])
@@ -473,7 +474,7 @@ function FilterSection({
         <div className="space-y-6">
             <div>
                 <h3 className="font-semibold mb-3">Categories</h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                     {categories.map((category) => (
                         <div key={category._id} className="flex items-center space-x-3">
                             <Checkbox
@@ -502,7 +503,7 @@ function FilterSection({
                             onCheckedChange={setShowOnlyInStock}
                             className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                         />
-                        <Label htmlFor="in-stock" className="text-sm cursor-pointer flex-1">
+                        <Label htmlFor="in-stock" className="cursor-pointer flex-1">
                             In Stock Only
                         </Label>
                     </div>
@@ -513,7 +514,7 @@ function FilterSection({
                             onCheckedChange={setShowOnlyFeatured}
                             className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                         />
-                        <Label htmlFor="featured" className="text-sm cursor-pointer flex-1">
+                        <Label htmlFor="featured" className="cursor-pointer flex-1">
                             Featured Only
                         </Label>
                     </div>
