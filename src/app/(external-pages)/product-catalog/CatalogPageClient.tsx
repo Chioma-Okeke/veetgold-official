@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useRef, useCallback } from "react"
 import { Search, Filter, X, ArrowDownUp, LoaderPinwheel } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator"
 import { IProduct, IProductCategory } from "@/types"
 import ProductCard from "@/components/product/product-card"
 import MaxContainer from "@/components/shared/max-container"
-import { getProducts } from "@/lib/sanity-queries"
+import { searchProducts, getProducts } from "@/lib/sanity-queries"
 import { useSearchParams, useRouter } from "next/navigation"
 
 interface CatalogPageClientProps {
@@ -33,7 +33,12 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
     const [showOnlyInStock, setShowOnlyInStock] = useState(false)
     const [showOnlyFeatured, setShowOnlyFeatured] = useState(false)
     const [loading, setLoading] = useState(false)
-    
+    const [loadingMore, setLoadingMore] = useState(false)
+    const [offset, setOffset] = useState(50) // Start at 50 since we have initial 50
+    const [hasMore, setHasMore] = useState(true)
+    const observerRef = useRef<IntersectionObserver | null>(null)
+    const loadMoreRef = useRef<HTMLDivElement>(null)
+
     useEffect(() => {
         if (featureFilter) {
             setSelectedCategories([featureFilter])
@@ -44,28 +49,84 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
     }, [featureFilter, searchParams, router])
 
     useEffect(() => {
-        const fetchFilteredProducts = async () => {
-            setLoading(true)
-            try {
-                const filteredProducts = await getProducts({
-                    search: searchQuery || undefined,
-                    featured: showOnlyFeatured || undefined,
-                    showOutOfStock: !showOnlyInStock,
-                })
-                setProducts(filteredProducts as IProduct[])
-            } catch (error) {
-                console.error('Error fetching products:', error)
-            } finally {
-                setLoading(false)
+        const fetchSearchResults = async () => {
+            // If there's a search query, use the search function
+            if (searchQuery && searchQuery.trim()) {
+                setLoading(true)
+                try {
+                    const searchResults = await searchProducts(searchQuery, {
+                        showOutOfStock: !showOnlyInStock,
+                    })
+                    setProducts(searchResults as IProduct[])
+                    setHasMore(false) // Disable pagination for search results
+                } catch (error) {
+                    console.error('Error searching products:', error)
+                } finally {
+                    setLoading(false)
+                }
+            } else {
+                // If no search query, show initial products
+                setProducts(initialProducts)
+                setOffset(50) // Reset offset
+                setHasMore(true) // Enable pagination
             }
         }
 
-        fetchFilteredProducts()
-    }, [searchQuery, showOnlyInStock, showOnlyFeatured])
+        fetchSearchResults()
+    }, [searchQuery, showOnlyInStock, initialProducts])
+
+    // Load more products function
+    const loadMoreProducts = useCallback(async () => {
+        if (loadingMore || !hasMore || searchQuery.trim()) return
+
+        setLoadingMore(true)
+        try {
+            const moreProducts = await getProducts({
+                showOutOfStock: !showOnlyInStock,
+                featured: showOnlyFeatured || undefined,
+                limit: 50,
+                offset: offset,
+            })
+
+            if (moreProducts.length === 0) {
+                setHasMore(false)
+            } else {
+                setProducts(prev => [...prev, ...moreProducts as IProduct[]])
+                setOffset(prev => prev + 50)
+            }
+        } catch (error) {
+            console.error('Error loading more products:', error)
+        } finally {
+            setLoadingMore(false)
+        }
+    }, [loadingMore, hasMore, searchQuery, offset, showOnlyInStock, showOnlyFeatured])
+
+    // Set up intersection observer for infinite scroll
+    useEffect(() => {
+        if (!loadMoreRef.current) return
+
+        observerRef.current = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && hasMore && !loading && !searchQuery.trim()) {
+                    loadMoreProducts()
+                }
+            },
+            { threshold: 0.1 }
+        )
+
+        observerRef.current.observe(loadMoreRef.current)
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect()
+            }
+        }
+    }, [hasMore, loading, searchQuery, loadMoreProducts])
 
     const filteredAndSortedProducts = useMemo(() => {
         let filtered = [...products]
 
+        // Filter by categories
         if (selectedCategories.length > 0) {
             filtered = filtered.filter((product) => {
                 if (!product.category || product.category.length === 0) {
@@ -75,23 +136,29 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
             })
         }
 
-        // Sort products
-        filtered.sort((a, b) => {
-            switch (sortBy) {
-                case "price-low":
-                    return a.price - b.price
-                case "price-high":
-                    return b.price - a.price
-                case "name":
-                    return a.name.localeCompare(b.name)
-                case "featured":
-                default:
-                    return b.featured ? 1 : -1
-            }
-        })
+        // Filter by featured status if enabled
+        if (showOnlyFeatured) {
+            filtered = filtered.filter((product) => product.featured)
+        }
+
+        // Sort products (skip sorting for "featured" to preserve original order from backend)
+        if (sortBy !== "featured") {
+            filtered.sort((a, b) => {
+                switch (sortBy) {
+                    case "price-low":
+                        return a.price - b.price
+                    case "price-high":
+                        return b.price - a.price
+                    case "name":
+                        return a.name.localeCompare(b.name)
+                    default:
+                        return 0
+                }
+            })
+        }
 
         return filtered
-    }, [products, selectedCategories, sortBy])
+    }, [products, selectedCategories, sortBy, showOnlyFeatured])
 
     const handleCategoryChange = (categorySlug: string, checked: boolean) => {
         if (checked) {
@@ -248,7 +315,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                         className="flex-1 min-w-0 min-h-screen">
                         {/* Results Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
-                            <motion.p
+                            <motion.div
                                 key={filteredAndSortedProducts.length}
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -261,7 +328,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                                         animate={{ opacity: 1 }}
                                         className="text-center py-12"
                                     >
-                                        <LoaderPinwheel className="mx-auto mb-4 h-10 w-10 text-primary animate-spin" />
+                                        {/* <LoaderPinwheel className="mx-auto mb-4 h-10 w-10 text-primary animate-spin" /> */}
                                         <p className="text-lg">Loading products...</p>
                                     </motion.div>
                                 ) : (
@@ -276,7 +343,7 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                                         </motion.span> product{filteredAndSortedProducts.length !== 1 ? "s" : ""} found
                                     </>
                                 )}
-                            </motion.p>
+                            </motion.div>
 
                             {/* Active Filters - Mobile */}
                             <AnimatePresence>
@@ -356,29 +423,29 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                         </div>
 
                         {/* Product Grid */}
-                        <motion.div
-                            layout
+                        <div
+                            // layout
                             className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 gap-y-8"
                         >
-                            <AnimatePresence>
-                                {filteredAndSortedProducts.map((product, index) => (
-                                    <motion.div
-                                        key={product._id}
-                                        layout
-                                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                                        exit={{ opacity: 0, scale: 0.8, y: -20 }}
-                                        transition={{
-                                            duration: 0.4,
-                                            delay: index * 0.05,
-                                            layout: { duration: 0.3 }
-                                        }}
-                                    >
-                                        <ProductCard product={product} />
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        </motion.div>
+                            {/* <AnimatePresence> */}
+                            {filteredAndSortedProducts.map((product) => (
+                                <div
+                                    key={product._id}
+                                // layout
+                                // initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                // animate={{ opacity: 1, scale: 1, y: 0 }}
+                                // exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                                // transition={{
+                                //     duration: 0.4,
+                                //     delay: index * 0.05,
+                                //     layout: { duration: 0.3 }
+                                // }}
+                                >
+                                    <ProductCard product={product} />
+                                </div>
+                            ))}
+                            {/* </AnimatePresence> */}
+                        </div>
 
                         {/* Empty State */}
                         <AnimatePresence>
@@ -440,11 +507,27 @@ export default function CatalogPageClient({ initialProducts, categories }: Catal
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-center py-12"
+                                className="text-center py-12 w-full "
                             >
                                 <LoaderPinwheel className="mx-auto mb-4 h-10 w-10 text-primary animate-spin" />
                                 <p className="text-lg">Loading products...</p>
                             </motion.div>
+                        )}
+
+                        {/* Infinite Scroll Trigger */}
+                        {!loading && !searchQuery.trim() && hasMore && (
+                            <div ref={loadMoreRef} className="w-full py-8">
+                                {loadingMore && (
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        className="text-center"
+                                    >
+                                        <LoaderPinwheel className="mx-auto mb-2 h-8 w-8 text-primary animate-spin" />
+                                        <p className="text-sm text-gray-600">Loading more products...</p>
+                                    </motion.div>
+                                )}
+                            </div>
                         )}
                     </motion.div>
                 </div>

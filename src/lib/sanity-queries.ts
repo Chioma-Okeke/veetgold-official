@@ -166,7 +166,7 @@ export async function getProducts(options?: {
     if (newArrival) filters.push("newArrival == true");
     if (bestSelling) filters.push("bestSelling == true");
     if (category) filters.push(`"${category}" in category[]->slug.current`);
-    
+
     // Add search functionality
     if (search && search.trim()) {
         const searchTerm = search.trim().toLowerCase();
@@ -297,7 +297,7 @@ export async function getProductsCount(options?: {
     if (newArrival) filters.push("newArrival == true");
     if (bestSelling) filters.push("bestSelling == true");
     if (category) filters.push(`"${category}" in category[]->slug.current`);
-    
+
     // Add search functionality
     if (search && search.trim()) {
         const searchTerm = search.trim().toLowerCase();
@@ -309,6 +309,71 @@ export async function getProductsCount(options?: {
     }
 
     const query = `count(*[${filters.join(" && ")}])`;
+
+    return await client.fetch(query);
+}
+
+// Search products by name or category
+export async function searchProducts(
+    searchTerm: string,
+    options?: {
+        showOutOfStock?: boolean;
+        limit?: number;
+        offset?: number;
+    }
+) {
+    const { showOutOfStock = true, limit = 50, offset = 0 } = options || {};
+
+    if (!searchTerm || searchTerm.trim() === "") {
+        return [];
+    }
+
+    const term = searchTerm.trim().toLowerCase();
+    const filters = ['_type == "product"'];
+
+    if (!showOutOfStock) filters.push("inStock == true");
+
+    // Search in name, description, tags, and category titles
+    filters.push(`(
+        name match "*${term}*" ||
+        description match "*${term}*" ||
+        "${term}" in tags[] ||
+        "${term}" in category[]->title
+    )`);
+
+    const query = `*[${filters.join(" && ")}] | order(featured desc, _createdAt desc) [${offset}...${offset + limit}]{
+    _id,
+    name,
+    slug,
+    price,
+    originalPrice,
+    description,
+    "category": category[]->{
+      _id,
+      title,
+      slug
+    },
+    tags,
+    images[]{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    inStock,
+    featured,
+    newArrival,
+    bestSelling,
+    ingredients,
+    howToUse,
+    benefits,
+    sizeVariants[]{
+      size,
+      price,
+      inStock
+    }
+  }`;
 
     return await client.fetch(query);
 }

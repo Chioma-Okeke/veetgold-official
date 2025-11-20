@@ -51,6 +51,7 @@ function HeroSection() {
                                     alt={alt}
                                     src={imgSrc}
                                     fill
+                                    quality={100}
                                     sizes="100vw"
                                     className="object-cover object-center"
                                 />
