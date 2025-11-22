@@ -40,7 +40,7 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                 setIsOpen(false);
             }
         }}>
-            <DialogTrigger className={cn('w-full text-start cursor-pointer', {
+            <DialogTrigger className={cn('w-full text-start cursor-pointer focus:outline-none focus:ring-0', {
                 'pointer-events-none': pathname !== '/product-catalog',
             })}>
                 <div className='relative flex flex-col gap-4'>
