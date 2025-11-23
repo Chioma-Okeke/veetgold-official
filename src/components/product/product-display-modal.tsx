@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+"use client"
+
+import React, { useRef, useState } from 'react'
 import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 import Image from 'next/image'
 import { IProduct } from '@/types'
@@ -9,6 +11,11 @@ import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation';
 import { Badge } from '../ui/badge';
 import { cn } from '@/lib/utils';
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface ProductDisplayModalProps {
     product: IProduct;
@@ -22,6 +29,7 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
     const [isShimmering, setIsShimmering] = useState(false);
     const addToCart = useCartStore((state) => state.addToCart);
     const pathname = usePathname()
+    const swiperRef = useRef<SwiperClass | null>(null);
 
     const handleAddToCart = () => {
         setIsShimmering(true)
@@ -76,15 +84,84 @@ function ProductDisplayModal({ product, imageUrl, isNewArrival, isBestSelling }:
                 </div>
             </DialogTrigger>
             <DialogContent className='max-w-3xl flex max-lg:flex-col gap-5 max-md:w-[95%] mx-auto rounded-[12px] min-h-[60vh] overflow-y-auto max-h-[90vh]'>
-                <div className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto">
-                    <Image
-                        src={product?.images?.length > 0 ? product?.images[0]?.asset.url : imageUrl}
-                        alt={product?.name}
-                        fill
-                        sizes='100vw'
-                        className="object-center object-contain rounded-[12px]"
-                    />
-                </div>
+                {product?.images?.length > 0 ?
+                    <Swiper
+                        spaceBetween={0}
+                        speed={1000}
+                        autoplay={{ delay: 6000, disableOnInteraction: false }}
+                        effect="slide"
+                        modules={[Autoplay, EffectFade, Mousewheel]}
+                        loop
+                        // onSlideChange={handleSlideChange}
+                        onSwiper={(swiper) => {
+                            swiperRef.current = swiper;
+                        }}
+                        className='w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] overflow-hidden relative'
+                    >
+                        {product?.images?.length > 1 &&
+                            <Button className='bg-gray-200/70 p-2 rounded-full absolute left-0 top-1/2 -translate-y-1/2 z-50 text-black hover:text-white text-2xl' onClick={() => swiperRef.current?.slidePrev()}>
+                                <ChevronLeft />
+                            </Button>
+                        }
+                        {product?.images.map((img) => {
+                            return (
+                                <SwiperSlide key={img.asset._id} className="relative w-full">
+                                    <div
+                                        key={img.asset._id}
+                                        className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto"
+                                    >
+                                        <Image
+                                            loading='lazy'
+                                            src={img.asset?.url ?? "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg"}
+                                            fill
+                                            sizes='100vw'
+                                            className="object-contain object-center rounded-[12px]"
+                                            alt={img.alt || product.name}
+                                        />
+                                    </div>
+                                </SwiperSlide>
+                            )
+                        })}
+                        {product?.images?.length > 1 &&
+                            <Button className='bg-gray-200/70 p-2 rounded-full absolute right-0 top-1/2 -translate-y-1/2 z-50 text-black hover:text-white text-2xl' onClick={() => swiperRef.current?.slideNext()}>
+                                <ChevronRight />
+                            </Button>
+                        }
+                    </Swiper> : (
+                        <div
+                            className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto"
+                        >
+                            <Image
+                                loading='lazy'
+                                src="https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg"
+                                fill
+                                sizes='100vw'
+                                className="object-contain object-center rounded-[12px]"
+                                alt={product.name}
+                            />
+                        </div>
+                    )}
+                {/* <div className='flex w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] overflow-hidden'>
+                    {product?.images?.length > 0 && product?.images.map((img) => {
+                        return (
+                            <SwiperSlide key={img.asset._id} className="relative w-full">
+                                <div
+                                    key={img.asset._id}
+                                    className="relative w-full h-full rounded-[12px] aspect-[350/400] max-w-[350px] mx-auto"
+                                >
+                                    <Image
+                                        loading='lazy'
+                                        src={img.asset?.url || "https://res.cloudinary.com/djrp3aaq9/image/upload/v1762972366/enhanced-veetgold-logo_ksiztj.jpg"}
+                                        fill
+                                        sizes='100vw'
+                                        className="object-cover object-center rounded-[12px]"
+                                        alt={img.alt || product.name}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        )
+                    })}
+                </div> */}
 
                 <div className="py-5 flex flex-col justify-between">
                     <div>
