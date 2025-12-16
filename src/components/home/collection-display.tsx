@@ -12,7 +12,7 @@ import { Autoplay, EffectCube, Mousewheel } from "swiper/modules";
 import { AnimatePresence, motion } from "framer-motion"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
-type CollectionKey = 'scrubs' | 'face-soaps' | 'cosmetics';
+type CollectionKey = 'scrubs' | 'facials' | 'fragrances';
 
 function CollectionDisplay() {
     const [activeTab, setActiveTab] = useState<CollectionKey>('scrubs');
@@ -28,15 +28,15 @@ function CollectionDisplay() {
                     </SelectTrigger>
                     <SelectContent className="bg-white text-[#55795E]">
                         <SelectItem value="scrubs">Scrubs</SelectItem>
-                        <SelectItem value="face-soaps">Facials</SelectItem>
-                        <SelectItem value="cosmetics">Cosmetics</SelectItem>
+                        <SelectItem value="facials">Facials</SelectItem>
+                        <SelectItem value="fragrances">Fragrances</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
             <TabsList className='bg-white w-full gap-2 max-w-[300px] sm:max-w-[334px] h-[61px] rounded-[12px] p-2 mb-[71px] max-sm:hidden'>
                 <TabsTrigger value="scrubs" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Scrubs</TabsTrigger>
-                <TabsTrigger value="face-soaps" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Facials</TabsTrigger>
-                <TabsTrigger value="cosmetics" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Cosmetics</TabsTrigger>
+                <TabsTrigger value="facials" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Facials</TabsTrigger>
+                <TabsTrigger value="fragrances" className='data-[state=active]:bg-[#55795E] data-[state=active]:text-white hover:bg-[#55795E] text-sm sm:tex-base rounded-[12px] py-[13px] px-4 hover:text-white transition-colors ease-in-out duration-300 cursor-pointer'>Fragrances</TabsTrigger>
             </TabsList>
             <div className='flex flex-col lg:flex-row-reverse max-lg:gap-10 lg:gap-5 lg:items-center lg:justify-between'>
                 <motion.div
