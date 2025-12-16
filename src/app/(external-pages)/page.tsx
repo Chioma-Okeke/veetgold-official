@@ -7,10 +7,10 @@ import React from 'react'
 function Home() {
   return (
     <>
-        <HeroSection/>
-        <SectionAfterHero />
-        <FeaturedCollection/>
-        <TestimonialSection />
+      <HeroSection />
+      <SectionAfterHero />
+      <FeaturedCollection />
+      <TestimonialSection />
     </>
   )
 }

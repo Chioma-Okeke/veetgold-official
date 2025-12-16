@@ -4,13 +4,13 @@ import React from 'react'
 type PageBannerProp = {
     bannerText: string;
     bannerColor?: string;
-    textColor?: string
+    textClass?: string
 }
 
-function PageBanner({bannerText, bannerColor = 'bg-black', textColor = 'text-white'}: PageBannerProp) {
+function PageBanner({bannerText, bannerColor = 'bg-black', textClass}: PageBannerProp) {
   return (
     <div className={`${bannerColor} py-4 w-full`}>
-        <p className={cn('text-center currentColor', textColor)}>{bannerText}</p>
+        <p className={cn('text-center currentColor', textClass)}>{bannerText}</p>
     </div>
   )
 }
