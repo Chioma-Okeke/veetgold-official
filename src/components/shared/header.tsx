@@ -23,7 +23,7 @@ function Header() {
                 {pathname === "/product-catalog" && width && width < 1024 && <CartModal />}
                 <div className='flex items-center lg:gap-32 max-lg:flex-1 max-lg:justify-center'>
                     <Link href="/">
-                        <Logo variant={((pathname === "/about-us" || pathname === "/product-catalog") && (width && width <= 1024)) ? "colored" : "default"} />
+                        <Logo variant={((pathname === "/product-catalog") && (width && width <= 1024)) ? "colored" : "default"} />
                     </Link>
                     <nav className='hidden lg:block'>
                         <ul className='flex items-center gap-8'>

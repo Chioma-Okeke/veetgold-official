@@ -60,7 +60,7 @@ function MobileSideBarNav() {
                 onClick={() => setOpen(true)}
                 className="rounded-md border-none ring-0 outline-none focus:outline-none focus:ring-0 focus:border-none"
             >
-                <MenuIcon className="size-6" color={pathname === '/product-catalog' || pathname === '/about-us' ? 'black' : 'currentColor'} />
+                <MenuIcon className="size-6" color={pathname === '/product-catalog' ? 'black' : 'currentColor'} />
             </button>
 
             <AnimatePresence>

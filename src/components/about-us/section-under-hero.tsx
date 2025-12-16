@@ -99,7 +99,7 @@ function SectionUnderHero() {
                                 </motion.div>
                             </motion.div>
                             <motion.div variants={itemVariants}>
-                                <CustomButton />
+                                <CustomButton animationClassName="text-green-600" />
                             </motion.div>
                         </div>
                     </motion.div>

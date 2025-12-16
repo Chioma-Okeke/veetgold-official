@@ -45,7 +45,7 @@ function HeroSection() {
                                 initial={{ opacity: 0, scale: 1.2 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 1.2, ease: "easeOut" }}
-                                className="relative z-0 w-full h-full after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/40 after:to-transparent">
+                                className="relative z-0 w-full h-full after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/60 after:to-transparent">
                                 <Image
                                     priority
                                     alt={alt}

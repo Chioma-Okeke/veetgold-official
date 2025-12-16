@@ -22,7 +22,7 @@ function SectionAfterHero() {
                             <h2 className="text-[28px] lg:text-[40px]">Naturally crafted to nourish the skin — gentle, and powerful</h2>
                             <p className='text-lg lg:text-xl'>Veetgold, a piethora of beauty products readily available at your local grocery stores.</p>
                         </div>
-                        <CustomButton />
+                        <CustomButton animationClassName="text-green-600"/>
                     </motion.div>
                     <motion.div
                         initial={{ x: 100, opacity: 0 }}
